@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HISTRA 중국</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: 공통 구간(스크롤시퀀스 → 키워드·지도 → 사건 카드 → 인물 카드)은 피그마 그대로, 그 아래는 중국 자유 구간(타임라인 · 유산 · 문화 · 데이터 · 출처) */
+:root{
+  --bg:#000000;
+  --surface:#111111;
+  --surface-2:#1b1a19;
+  --line:#2c2a28;
+  --fg:#f4f2ef;
+  --muted:#9a948d;
+  --accent:#f0642a;
+  --accent-soft:rgba(240,100,42,.28);
+  --fg-soft:rgba(244,242,239,.16);
+  --paper-dark:#6b5236;
+  /* 디자인가이드: 서체 Noto Sans KR 단일 */
+  --font:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  /* 디자인가이드 — Desktop */
+  --fs-display:64px; --fs-h1:48px; --fs-h2:36px; --fs-h3:28px; --fs-body:16px; --fs-caption:14px;
+  --gutter:clamp(20px,15.625vw,300px); /* 피그마 1920 기준 좌우 마진 300 */
+  --header-x:clamp(16px,5.21vw,100px); /* 피그마 1920 기준 로고 위치 100 */
+  color-scheme:dark;
+}
+@media (max-width:768px){
+  /* 디자인가이드 — Mobile */
+  :root{--fs-display:40px; --fs-h1:32px; --fs-h2:28px; --fs-h3:24px; --fs-body:16px; --fs-caption:12px; --gutter:20px; --header-x:20px;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:var(--fs-body);line-height:1.7;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h1,h2,h3{margin:0;font-weight:500;text-wrap:balance;line-height:1.25}
+p{margin:0}
+.wrap{padding-inline:var(--gutter)}
+.caption{font-size:var(--fs-caption);color:var(--muted)}
+.eyebrow{font-size:var(--fs-caption);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* ── 헤더 (공통) ── */
+.site-header{position:fixed;inset:0 0 auto 0;z-index:50;padding:calc(env(safe-area-inset-top,0px) + 20px) var(--header-x) 20px;display:flex;align-items:center;gap:24px;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0));transition:background .3s}
+.site-header.solid{background:rgba(0,0,0,.86);backdrop-filter:blur(6px)}
+.logo{display:block;width:92px;flex:none}
+.logo img{width:100%;height:auto}
+.site-header nav{flex:1;min-width:0;display:flex;justify-content:center}
+.gnb{display:flex;gap:clamp(16px,5vw,72px);list-style:none;padding:0;margin:0}
+.gnb a{text-decoration:none;font-size:var(--fs-caption);font-weight:300;color:rgba(244,242,239,.75)}
+.gnb a:hover{color:var(--fg)}
+.gnb a[aria-current="page"]{font-weight:700;color:var(--fg)}
+.header-spacer{width:92px;flex:none}
+@media (max-width:600px){.header-spacer{display:none}.site-header nav{justify-content:flex-end}.gnb{gap:14px}.logo{width:72px}}
+
+/* ── 첫화면: 스크롤시퀀스 (공통) ── */
+.hero{position:relative;height:320vh}
+.hero-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#000}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.15) 45%,rgba(0,0,0,.72) 100%)}
+.hero-copy{position:absolute;left:0;right:0;bottom:clamp(48px,12vh,120px);padding-inline:var(--gutter);display:grid;gap:10px}
+.hero-copy .ko{font-size:var(--fs-caption);color:rgba(244,242,239,.85)}
+.hero-copy h1{font-size:var(--fs-display);font-weight:300;letter-spacing:.02em;line-height:1.1;text-transform:uppercase}
+.hero-copy .country{font-size:var(--fs-caption);letter-spacing:.24em;text-transform:uppercase;color:rgba(244,242,239,.7)}
+.scroll-hint{position:absolute;right:var(--header-x);bottom:clamp(48px,12vh,120px);font-size:var(--fs-caption);color:rgba(244,242,239,.6);letter-spacing:.12em;writing-mode:vertical-rl}
+@media (max-width:600px){.scroll-hint{display:none}}
+
+section{padding-block:clamp(80px,12vw,160px)}
+section.tight{padding-top:0}
+
+/* ── 키워드·지도 (공통) ── */
+.oneland{display:grid;grid-template-columns:43.2% 56.8%;align-items:center}
+.oneland>div:first-child{padding-right:clamp(24px,5vw,96px)}
+.oneland h2{font-size:var(--fs-h1);font-weight:500;line-height:1.15;margin-block:12px 24px}
+.oneland .lede{color:rgba(244,242,239,.78);max-width:38ch}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:32px 0 0;padding-bottom:16px;border-bottom:1px solid rgba(244,242,239,.4)}
+.facts dt{font-size:var(--fs-caption);color:var(--muted)}
+.facts dd{margin:4px 0 0;font-weight:500}
+.keywords{display:flex;flex-wrap:wrap;gap:8px 0;list-style:none;padding:0;margin:16px 0 0}
+.keywords li{font-size:var(--fs-caption);color:rgba(244,242,239,.85)}
+.keywords li+li::before{content:"·";margin-inline:12px;color:var(--muted)}
+.mapbox{position:relative;aspect-ratio:444/377;max-width:100%;overflow:hidden;background:var(--paper-dark)}
+.mapbox svg{position:absolute;inset:0;width:100%;height:100%}
+.map-inset{position:absolute;left:51.4%;top:16.2%;width:37.8%;height:70%;background:rgba(20,14,8,.72);border:1px solid rgba(201,167,122,.45);display:grid;place-items:center;padding:6%}
+.map-inset svg{position:static;width:100%;height:auto}
+.map-label{position:absolute;left:5%;top:5%;font-size:var(--fs-caption);letter-spacing:.14em;color:#2b1d0f;font-weight:500}
+@media (max-width:860px){.oneland{grid-template-columns:1fr;gap:40px}.oneland>div:first-child{padding-right:0}}
+
+/* ── 섹션 타이틀 (공통 형식: 얇은 줄 + 굵은 줄, H1) ── */
+.sec-title{font-size:var(--fs-h1);line-height:1.15;margin-bottom:clamp(40px,6vw,80px)}
+.sec-title .thin{display:block;font-weight:300;color:rgba(244,242,239,.7)}
+.sec-title strong{display:block;font-weight:700}
+.sec-title.inline .thin,.sec-title.inline strong{display:inline}
+.sec-head{margin-bottom:clamp(40px,6vw,72px)}
+.sec-head .sec-title{margin-bottom:16px}
+.sec-head .sub{color:var(--muted);max-width:60ch}
+
+/* ── 사건 카드 (공통) ── */
+.moments{display:grid;grid-template-columns:1fr 1fr;row-gap:clamp(40px,5.2vw,100px);column-gap:8.9%}
+.moments .card:nth-child(even){transform:translateY(clamp(40px,5.26vw,101px))}
+.card{display:grid;gap:14px;text-align:left;width:100%;align-content:start}
+.card-media{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:var(--surface-2)}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,filter .6s ease;filter:saturate(.85)}
+.card:hover .card-media img,.card:focus-visible .card-media img{transform:scale(1.04);filter:saturate(1)}
+.card-meta{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:baseline}
+.card-year{font-size:var(--fs-caption);color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+.card-title{font-weight:700}
+.card-sum{grid-column:2;font-size:var(--fs-caption);color:var(--muted);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.moments-end{height:clamp(40px,5.26vw,101px)}
+@media (max-width:700px){.moments{grid-template-columns:1fr}.moments .card:nth-child(even){transform:none}.moments-end{display:none}}
+
+/* ── 인물 카드 (공통 · 피그마: 번호 좌상단, 연도 우하단, 영문 이름 + 2줄 설명, 짝수 카드 아래로) ── */
+.people{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:2.27%;align-items:start}
+.people .card{gap:12px}
+.people .card:nth-child(even){margin-top:14%}
+.person-media{position:relative;aspect-ratio:240/351;max-width:100%;overflow:hidden;background:var(--surface-2)}
+.person-media img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s}
+.card:hover .person-media img,.card:focus-visible .person-media img{transform:scale(1.03)}
+.person-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 72%,rgba(0,0,0,.55) 100%);pointer-events:none}
+.p-num{position:absolute;left:10px;top:8px;z-index:1;font-size:var(--fs-caption);color:var(--fg);font-variant-numeric:tabular-nums}
+.p-range{position:absolute;right:10px;bottom:8px;z-index:1;font-size:var(--fs-caption);color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+.person-name{font-weight:500;font-size:var(--fs-body);line-height:1.4}
+.person-line{font-size:var(--fs-caption);color:var(--muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:760px){.people{grid-template-columns:repeat(5,44vw);column-gap:12px;overflow-x:auto;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);padding-bottom:8px;scroll-snap-type:x mandatory;scrollbar-width:none}.people .card{scroll-snap-align:start}}
+
+/* ── 팝업 (공통) ── */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px 16px;background:rgba(0,0,0,.72);opacity:0;pointer-events:none;transition:opacity .25s}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-box{position:relative;width:min(640px,100%);max-height:calc(100vh - 48px);overflow:auto;background:var(--surface);transform:translateY(16px);transition:transform .3s}
+.modal.open .modal-box{transform:none}
+.modal-media{background:var(--surface-2)}
+.modal-media img{width:100%;max-height:52vh;object-fit:contain;margin-inline:auto}
+.modal-body{padding:24px clamp(20px,4vw,32px) 28px;display:grid;gap:12px}
+.modal-tag{font-size:var(--fs-caption);color:var(--accent)}
+.modal-body h3{font-size:var(--fs-h3);font-weight:700}
+.modal-body p{color:rgba(244,242,239,.82)}
+.modal-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:14px;margin-top:4px;border-top:1px solid var(--line);font-size:var(--fs-caption);color:var(--muted)}
+.modal-foot .range{color:var(--fg);font-variant-numeric:tabular-nums;margin-left:auto}
+.modal-close{position:absolute;top:10px;right:10px;width:36px;height:36px;display:grid;place-items:center;background:rgba(0,0,0,.6);z-index:2}
+.modal-close svg{width:16px;height:16px}
+.dl{display:grid;gap:10px;margin:0}
+.dl div{display:grid;grid-template-columns:9em minmax(0,1fr);gap:12px}
+.dl dt{font-size:var(--fs-caption);color:var(--muted);padding-top:2px}
+.dl dd{margin:0;color:rgba(244,242,239,.86)}
+@media (max-width:520px){.dl div{grid-template-columns:1fr;gap:2px}}
+
+/* ═════ 자유 구간: 중국 ═════ */
+
+
+/* 역사 흐름: 이 구간에서만 화면이 고정되고, 스크롤에 따라 왼쪽 영토와 오른쪽 시대 정보가 바뀜 */
+.eras-scroll{position:relative}
+.eras-sticky{position:sticky;top:0;height:100vh;height:100svh;display:grid;grid-template-columns:56.8% 43.2%;grid-template-rows:auto auto;align-content:start;align-items:start;padding-inline:var(--gutter);padding-block:clamp(96px,12vh,140px) clamp(24px,5vh,56px);overflow:hidden}
+.eras-head{grid-column:1/-1;margin-bottom:clamp(24px,4vh,48px)}
+.era-map{position:relative;display:grid;gap:12px;padding-right:clamp(24px,5vw,96px)}
+.era-paper{position:relative;overflow:hidden;background:var(--paper-dark);box-shadow:inset 0 0 0 1px rgba(201,167,122,.35)}
+.era-paper svg{display:block;width:100%;height:auto;max-height:calc(100vh - 380px);min-height:200px}
+.era-paper::after{content:"";position:absolute;inset:8px;border:1px solid rgba(59,42,23,.45);outline:1px solid rgba(59,42,23,.25);outline-offset:3px;pointer-events:none}
+.e-land{fill:#d9c29a;stroke:#5e4429;stroke-width:.8;stroke-opacity:.8}
+.e-grat{fill:none;stroke:#5e4429;stroke-opacity:.28;stroke-width:.6}
+.e-ref{fill:none;stroke:#3b2a17;stroke-width:1;stroke-dasharray:3 4;opacity:.75}
+.e-era{opacity:0;transition:opacity .6s}
+.e-era.on{opacity:1}
+.e-nb{fill:rgba(94,68,41,.12);stroke:#5e4429;stroke-width:.7;stroke-opacity:.75}
+.e-main{fill:rgba(176,44,20,.30);stroke:#9b2c14;stroke-width:1.6;stroke-linejoin:round}
+.era-map .map-note{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:var(--fs-caption);color:var(--muted)}
+.map-note i{display:inline-block;width:18px;height:0;border-top:1px dashed var(--muted);vertical-align:middle;margin-right:6px}
+.map-note i.cur{border-top:2px solid var(--accent)}
+.map-note i.nb{border-top:1px solid var(--muted)}
+.era-info{position:relative;display:grid;gap:28px;align-content:start}
+.era-count{font-size:var(--fs-caption);color:var(--muted);font-variant-numeric:tabular-nums}
+.era-count b{color:var(--fg);font-weight:500}
+.era-stack{display:grid}
+.era-card{grid-area:1/1;display:grid;gap:14px;align-content:start;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;pointer-events:none}
+.era-card.on{opacity:1;transform:none;pointer-events:auto}
+.era-card .han{font-size:var(--fs-caption);color:var(--muted);letter-spacing:.08em}
+.era-card h3{font-size:var(--fs-h2);font-weight:700}
+.era-card .yr{font-size:var(--fs-caption);color:var(--accent);font-variant-numeric:tabular-nums}
+.era-card .lbl{font-size:var(--fs-caption);color:var(--muted);margin-bottom:4px}
+.era-card p{color:rgba(244,242,239,.84)}
+.era-card .blk{border-top:1px solid var(--line);padding-top:14px}
+.era-ticks{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.era-ticks button{width:100%;min-width:14px;height:20px;position:relative}
+.era-ticks li{flex:1}
+.era-ticks button::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:var(--line);transition:background .3s}
+.era-ticks button.done::before{background:var(--muted)}
+.era-ticks button.on::before{background:var(--accent)}
+@media (max-width:860px){
+  .eras-sticky{grid-template-columns:1fr;grid-template-rows:auto auto 1fr;align-items:start;padding-top:76px;gap:12px}
+  .eras-head{margin-bottom:0}
+  .eras-head .sub{display:none}
+  .era-map{padding-right:0}
+  .era-paper svg{max-height:28vh;min-height:0}
+  .era-info{min-height:0;align-content:start;gap:16px}
+  .era-card{gap:10px}
+}
+
+/* 유적·문화유산: 풀화면 사진 + 그라데이션, 사진·글 지그재그 */
+.her-list{display:grid;gap:clamp(40px,7vw,120px)}
+.her-row{position:relative;margin-inline:calc(var(--gutter) * -1);min-height:clamp(440px,74vh,820px);display:flex;align-items:center}
+.her-img{position:absolute;top:0;bottom:0;left:0;width:68%;overflow:hidden}
+.her-row.rev .her-img{left:auto;right:0}
+.her-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter 1.2s}
+.her-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,0) 38%,rgba(0,0,0,.55) 70%,var(--bg) 99%),
+             linear-gradient(180deg,var(--bg) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 78%,var(--bg) 100%)}
+.her-row.rev .her-img::after{background:linear-gradient(270deg,rgba(0,0,0,0) 38%,rgba(0,0,0,.55) 70%,var(--bg) 99%),
+             linear-gradient(180deg,var(--bg) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 78%,var(--bg) 100%)}
+.her-row:hover .her-img img{transform:scale(1.12);filter:brightness(1.06)}
+.her-text{position:relative;z-index:1;width:40%;margin-left:auto;padding-right:var(--gutter);display:grid;gap:16px}
+.her-row.rev .her-text{margin-left:0;margin-right:auto;padding-right:0;padding-left:var(--gutter)}
+.her-num{font-size:var(--fs-caption);color:var(--accent);font-variant-numeric:tabular-nums}
+.her-text h3{font-size:var(--fs-h2);font-weight:700}
+.her-meta{font-size:var(--fs-caption);color:var(--muted)}
+.her-text .blk{border-top:1px solid var(--line);padding-top:14px}
+.her-text .lbl{font-size:var(--fs-caption);color:var(--muted);margin-bottom:4px}
+.her-text p{color:rgba(244,242,239,.84)}
+@media (max-width:860px){
+  .her-row{display:block;min-height:0}
+  .her-img,.her-row.rev .her-img{position:relative;width:100%;height:62vw;left:0;right:0}
+  .her-img::after,.her-row.rev .her-img::after{background:linear-gradient(180deg,var(--bg) 0%,rgba(0,0,0,0) 18%,rgba(0,0,0,0) 55%,var(--bg) 100%)}
+  .her-text,.her-row.rev .her-text{width:auto;margin:-40px 0 0;padding-inline:var(--gutter)}
+}
+
+/* 문화 콘텐츠: GNB와 같은 텍스트 탭 + 3D 오브젝트 */
+.ctabs{display:flex;flex-wrap:wrap;gap:12px clamp(16px,5vw,72px);margin-bottom:clamp(28px,4vw,40px)}
+.ctab{font-size:var(--fs-caption);font-weight:300;color:rgba(244,242,239,.75)}
+.ctab:hover{color:var(--fg)}
+.ctab[aria-selected="true"]{font-weight:700;color:var(--fg)}
+.culture-stage{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,96px);align-items:center}
+.c3d{position:relative;display:grid;gap:10px}
+.c3d-box{position:relative;aspect-ratio:4/3;max-width:100%;background:radial-gradient(ellipse at 50% 60%,#1d1a17 0%,var(--bg) 70%);cursor:grab;touch-action:pan-y}
+.c3d-box:active{cursor:grabbing}
+.c3d canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.c3d .caption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.culture-panel{display:grid;gap:clamp(20px,3vw,32px)}
+.c-item{border-top:1px solid var(--line);padding-top:18px}
+.c-item h3{font-size:var(--fs-body);font-weight:700;margin-bottom:8px}
+.c-item p{color:rgba(244,242,239,.8)}
+@media (max-width:860px){.culture-stage{grid-template-columns:1fr}}
+
+/* 데이터 시각화: 그래픽마다 한 화면, 인터랙션으로 이해 */
+.viz{display:grid;gap:clamp(60px,8vh,120px)}
+.viz-block{min-height:calc(100vh - 140px);display:grid;grid-template-columns:minmax(0,34%) minmax(0,66%);gap:0;align-items:center}
+.viz-text{display:grid;gap:18px;align-content:center;padding-right:clamp(24px,4vw,72px)}
+.viz-text h3{font-size:var(--fs-h3);font-weight:700}
+.big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.big strong{font-size:var(--fs-h2);font-weight:500;color:var(--accent);font-variant-numeric:tabular-nums}
+.stats{display:grid;gap:10px;margin:0}
+.stats div{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font-variant-numeric:tabular-nums}
+.stats dt{font-size:var(--fs-caption);color:var(--muted)}
+.stats dd{margin:0;font-weight:500}
+.stats .up{color:var(--accent)}
+.notes{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:var(--fs-caption);color:rgba(244,242,239,.75)}
+.src{font-size:var(--fs-caption);color:var(--muted);word-break:break-all}
+.src a{color:var(--fg)}
+.viz-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:12px clamp(16px,3vw,40px)}
+.yr-btn{font-size:var(--fs-caption);font-weight:300;color:rgba(244,242,239,.7);font-variant-numeric:tabular-nums}
+.yr-btn[aria-pressed="true"]{font-weight:700;color:var(--fg)}
+.play-btn{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-caption);color:var(--fg);border:1px solid var(--line);padding:8px 16px;border-radius:999px;transition:border-color .2s,background .2s}
+.play-btn:hover{border-color:var(--accent);background:rgba(240,100,42,.08)}
+.play-btn svg{width:10px;height:10px}
+@media (max-width:860px){.viz-block{grid-template-columns:1fr;min-height:0;gap:32px}.viz-text{padding-right:0}}
+
+/* 도시화율: 큰 중국 모양 틀 */
+.urban-stage{position:relative;width:min(100%,calc((100vh - 200px) * 300 / 260));aspect-ratio:300/260;margin-inline:auto}
+.urban-stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.u-outline{fill:rgba(244,242,239,.035);stroke:var(--fg);stroke-width:1;stroke-linejoin:round}
+.u-fill{fill:var(--accent);opacity:.3}
+.u-gain{fill:var(--accent);opacity:0;transition:opacity .6s}
+.u-gain.show{opacity:.35}
+.u-water{stroke:var(--accent);stroke-width:1.2}
+.u-ghost{stroke:var(--fg);stroke-width:1;stroke-dasharray:4 4;opacity:0;transition:opacity .5s}
+.u-ghost.show{opacity:.8}
+.u-tag{position:absolute;right:0;transform:translateY(-50%);font-size:var(--fs-caption);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none;transition:opacity .4s}
+.u-tag.now{color:var(--accent);font-weight:500}
+.u-tag.old{color:var(--muted);opacity:0}
+.u-tag.old.show{opacity:1}
+.u-zone{position:absolute;left:4%;font-size:var(--fs-caption);color:var(--muted);pointer-events:none}
+.tip{position:absolute;z-index:3;pointer-events:none;background:rgba(17,17,17,.94);border:1px solid var(--line);padding:8px 12px;font-size:var(--fs-caption);line-height:1.5;white-space:nowrap;opacity:0;transition:opacity .15s;transform:translate(-50%,calc(-100% - 12px))}
+.tip.show{opacity:1}
+.tip b{color:var(--accent);font-weight:500}
+
+/* 민족 구성: 복식 픽토그램 */
+.eth-stage{position:relative;display:grid;gap:20px}
+.people-grid{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:12px 6px;max-width:calc((100vh - 330px) * 2.05);margin-inline:auto;width:100%}
+.people-grid svg{width:100%;height:auto;display:block;transition:opacity .35s,transform .35s}
+.ico{fill:var(--fg-soft);stroke:var(--fg);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.ico.min{fill:var(--accent-soft);stroke:var(--accent)}
+.people-grid svg.dim{opacity:.14}
+.people-grid svg.hit{transform:translateY(-4px)}
+.people-grid.intro svg{opacity:.12;transform:translateY(8px)}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.legend button{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;text-align:left;padding:10px;border:1px solid transparent;transition:border-color .2s,background .2s}
+.legend button:hover,.legend button[aria-pressed="true"]{border-color:var(--line);background:var(--surface)}
+.legend svg{width:44px;height:auto}
+.legend .ico{stroke-width:1.6}
+.legend b{display:block;font-weight:500;font-variant-numeric:tabular-nums}
+.legend span{font-size:var(--fs-caption);color:var(--muted)}
+.legend .min-t b{color:var(--accent)}
+@media (max-width:860px){.people-grid{grid-template-columns:repeat(10,minmax(0,1fr));gap:8px 4px;max-width:none}.legend{grid-template-columns:1fr}}
+
+/* 변검 */
+.bian{display:grid;grid-template-columns:minmax(0,46%) minmax(0,54%);align-items:center}
+.bian-stage{position:relative;aspect-ratio:1/1;max-width:min(100%,calc(100vh - 280px));margin-inline:auto;width:100%;cursor:grab;touch-action:pan-y;background:radial-gradient(circle at 50% 46%,rgba(176,44,20,.28) 0%,rgba(0,0,0,0) 62%)}
+.bian-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bian-stage .fallback{position:absolute;inset:8%;width:84%;height:84%;object-fit:contain}
+.bian-hint{position:absolute;left:0;right:0;bottom:2%;text-align:center;font-size:var(--fs-caption);color:var(--muted);pointer-events:none}
+.bian-text{display:grid;gap:18px;padding-left:clamp(24px,4vw,72px)}
+.bian-text h3{font-size:var(--fs-h3);font-weight:700}
+.bian-text p{color:rgba(244,242,239,.84)}
+.face-key{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0}
+.face-key button{display:grid;gap:4px;text-align:left;padding:10px;border-top:2px solid var(--line);transition:border-color .2s}
+.face-key button[aria-pressed="true"]{border-color:var(--c)}
+.face-key b{font-size:var(--fs-caption);font-weight:700}
+.face-key span{font-size:var(--fs-caption);color:var(--muted)}
+.video-meta{font-size:var(--fs-caption);color:var(--muted)}
+@media (max-width:860px){.bian{grid-template-columns:1fr;min-height:0;gap:24px}.bian-text{padding-left:0}.face-key{grid-template-columns:1fr 1fr}}
+
+/* 출처 */
+.table-wrap{overflow-x:auto;border-top:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:var(--fs-caption)}
+th,td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500}
+td a{color:var(--fg);word-break:break-all}
+td:first-child{font-weight:500}
+
+footer{padding-block:40px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
+footer img{width:72px;opacity:.7}
+
+.reveal{transition:opacity .8s ease,transform .8s ease}
+.js .reveal.pending{opacity:.001;transform:translateY(24px)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.js .reveal.pending{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <a class="logo" href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="assets/img/logo.png" alt="histra"></a>
+  <nav aria-label="국가 메뉴">
+    <ul class="gnb">
+      <li><a href="../uk/index.html">UK</a></li>
+      <li><a href="index.html" aria-current="page">China</a></li>
+      <li><a href="../korea/index.html">Korea</a></li>
+      <li><a href="../italy/index.html">Italy</a></li>
+      <li><a href="../egypt/index.html">Egypt</a></li>
+    </ul>
+  </nav>
+  <span class="header-spacer" aria-hidden="true"></span>
+</header>
+
+<main>
+  <!-- 첫화면 : 스크롤시퀀스 / 나라별 핵심문장 / 나라이름 -->
+  <div class="hero" id="hero">
+    <div class="hero-sticky">
+      <canvas id="seq" aria-hidden="true"></canvas>
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <p class="ko">중국의 역사</p>
+        <h1>왕조의 흥망 속에 하나의 문명을<br>이어온 나라, 중국</h1>
+        <p class="country">China</p>
+      </div>
+      <p class="scroll-hint">SCROLL</p>
+    </div>
+  </div>
+
+  <!-- 키워드 · 지도 -->
+  <section>
+    <div class="wrap oneland reveal">
+      <div>
+        <p class="eyebrow">The People's Republic of China</p>
+        <h2>ONELAND<br>MANY<br>WORLDS,</h2>
+        <p class="lede">상·주의 갑골문자에서 진의 통일, 실크로드와 과거제, 근대의 격변과 개혁개방까지. 중국은 수많은 왕조가 교체되는 동안에도 문자와 제도를 이어 오며 동아시아 문명의 큰 줄기를 만들었습니다.</p>
+        <dl class="facts">
+          <div><dt>수도</dt><dd>베이징</dd></div>
+          <div><dt>공용어</dt><dd>표준중국어(보통화)</dd></div>
+        </dl>
+        <ul class="keywords" aria-label="핵심 키워드">
+          <li>한자</li><li>유교</li><li>실크로드</li><li>개혁개방</li>
+        </ul>
+      </div>
+      <div class="mapbox" role="img" aria-label="동아시아 지도 위에 표시한 중국과 중국의 국토 모양">
+        <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="paper" x="0" y="0" width="100%" height="100%">
+              <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="7" result="n"/>
+              <feColorMatrix in="n" type="matrix" values="0 0 0 0 .42  0 0 0 0 .31  0 0 0 0 .19  0 0 0 .55 0"/>
+              <feComposite in2="SourceGraphic" operator="in"/>
+            </filter>
+            <radialGradient id="age" cx="50%" cy="45%" r="75%">
+              <stop offset="0" stop-color="#d8bb8e"/><stop offset=".65" stop-color="#b38d5c"/><stop offset="1" stop-color="#5e4429"/>
+            </radialGradient>
+          </defs>
+          <rect width="600" height="600" fill="url(#age)"/>
+          <path id="mGrat" fill="none" stroke="#5e4429" stroke-opacity=".35" stroke-width=".6"/>
+          <path id="mOthers" fill="#c7a679" stroke="#5e4429" stroke-opacity=".7" stroke-width=".7"/>
+          <path id="mChina" fill="#ece0c8" stroke="#3b2a17" stroke-width="1.4"/>
+          <rect width="600" height="600" fill="#000" filter="url(#paper)" opacity=".9"/>
+        </svg>
+        <span class="map-label">EAST ASIA</span>
+        <div class="map-inset">
+          <svg viewBox="0 0 300 260" aria-hidden="true"><path id="mShape" fill="#e7dcc6" stroke="#f4f2ef" stroke-opacity=".4" stroke-width=".8"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주요 사건 카드 -->
+  <section aria-labelledby="moments-title">
+    <div class="wrap">
+      <h2 class="sec-title reveal" id="moments-title"><span class="thin">THE MOMENTS</span><strong>THAT SHAPED CHINA</strong></h2>
+      <div class="moments" id="moments"></div>
+      <div class="moments-end"></div>
+    </div>
+  </section>
+
+  <!-- 대표 인물 카드 -->
+  <section aria-labelledby="people-title">
+    <div class="wrap">
+      <h2 class="sec-title inline reveal" id="people-title"><strong>PEOPLE</strong> <span class="thin">WHO SHAPED HISTORY</span></h2>
+      <div class="people" id="people"></div>
+    </div>
+  </section>
+
+  <!-- ───────── 여기서부터 중국 자유 형식 ───────── -->
+  <section id="timeline" aria-labelledby="tl-title" style="padding-block:0">
+    <div class="eras-scroll" id="erasScroll">
+      <div class="eras-sticky">
+        <div class="sec-head eras-head">
+          <h2 class="sec-title inline" id="tl-title"><strong>ERAS</strong> <span class="thin">THAT REDREW THE MAP</span></h2>
+          <p class="sub">역사 흐름 · 스크롤을 내리면 상·주부터 개혁개방 이후까지 11개 시대의 영토가 차례로 바뀝니다.</p>
+        </div>
+        <div class="era-map">
+          <div class="era-paper">
+            <svg viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice" id="eraSvg" role="img" aria-label="시대별 중국 왕조의 영토와 주변 국경을 옛 지도 위에 표시">
+              <defs>
+                <filter id="paper2" x="0" y="0" width="100%" height="100%">
+                  <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="11" result="n"/>
+                  <feColorMatrix in="n" type="matrix" values="0 0 0 0 .42  0 0 0 0 .31  0 0 0 0 .19  0 0 0 .6 0"/>
+                  <feComposite in2="SourceGraphic" operator="in"/>
+                </filter>
+                <filter id="stain" x="0" y="0" width="100%" height="100%">
+                  <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="2" seed="4" result="s"/>
+                  <feColorMatrix in="s" type="matrix" values="0 0 0 0 .36  0 0 0 0 .25  0 0 0 0 .13  0 0 0 1.1 -.45"/>
+                  <feComposite in2="SourceGraphic" operator="in"/>
+                </filter>
+                <radialGradient id="age2" cx="50%" cy="48%" r="72%">
+                  <stop offset="0" stop-color="#e3cda4"/><stop offset=".62" stop-color="#c4a274"/><stop offset="1" stop-color="#6b5236"/>
+                </radialGradient>
+              </defs>
+              <rect width="600" height="480" fill="url(#age2)"/>
+              <path class="e-grat" id="eGrat"/>
+              <path class="e-land" id="eLand"/>
+              <g id="eEras"></g>
+              <path class="e-ref" id="eRef"/>
+              <rect width="600" height="480" fill="#000" filter="url(#stain)" opacity=".55"/>
+              <rect width="600" height="480" fill="#000" filter="url(#paper2)" opacity=".85"/>
+            </svg>
+          </div>
+          <p class="map-note"><span><i class="cur"></i>당시 영토(대략적 범위)</span><span><i class="nb"></i>당시 주변 국가 경계</span><span><i></i>현재 중국 국경</span></p>
+        </div>
+        <div class="era-info">
+          <p class="era-count" aria-live="polite"><b id="eraNow">01</b> / 11</p>
+          <div class="era-stack" id="eraStack"></div>
+          <ol class="era-ticks" id="eraTicks" aria-label="시대로 이동"></ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="heritage" class="tight" aria-labelledby="h-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="sec-title inline" id="h-title"><strong>HERITAGE</strong> <span class="thin">THAT STILL STANDS</span></h2>
+        <p class="sub">유적 · 문화유산 · 오늘까지 남아 있는 세 곳의 위치와 특징, 역사적 의미입니다.</p>
+      </div>
+      <div class="her-list" id="heritageList"></div>
+    </div>
+  </section>
+
+  <section id="culture" aria-labelledby="c-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="sec-title inline" id="c-title"><strong>CULTURE</strong> <span class="thin">THAT LIVES ON</span></h2>
+        <p class="sub">문화 콘텐츠 · 언어와 문자, 문학과 예술, 종교, 생활문화 네 갈래로 정리했습니다.</p>
+      </div>
+      <div class="ctabs" role="tablist" aria-label="문화 분류" id="cTabs"></div>
+      <div class="culture-stage">
+        <div class="c3d">
+          <div class="c3d-box" id="c3dBox" role="img" aria-label="선택한 문화 분류를 상징하는 3D 오브젝트"></div>
+          <p class="caption"><span id="c3dName">죽간(竹簡) · 『논어』 첫 구절</span><span>드래그하면 살짝 돌려 볼 수 있어요</span></p>
+        </div>
+        <div class="culture-panel" role="tabpanel" id="cPanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bianlian" aria-labelledby="b-title">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:8px">
+        <h2 class="sec-title inline" id="b-title"><strong>BIANLIAN</strong> <span class="thin">THE STAGE OF CHANGING FACES</span></h2>
+        <p class="sub">변검(變臉) · 쓰촨극 · 얼굴을 누르면 부채가 지나가며 얼굴이 바뀝니다.</p>
+      </div>
+      <div class="bian">
+        <div class="bian-stage" id="bianStage" role="button" tabindex="0" aria-label="얼굴 바꾸기">
+          <p class="bian-hint">누르면 얼굴이 바뀌고, 끌면 살짝 돌아갑니다</p>
+        </div>
+        <div class="bian-text reveal">
+          <h3>쓰촨극의 순간, 변검</h3>
+          <p>변검은 쓰촨극(川劇)의 기법으로, 배우가 한 공연 안에서 여러 번 순식간에 얼굴(가면)을 바꾼다.</p>
+          <div class="face-key" id="faceKey" role="group" aria-label="얼굴 색과 의미"></div>
+          <p class="video-meta">얼굴 색 의미: 중국 전통극(경극) 얼굴 분장 기준 · 출처 Visit Beijing</p>
+
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="data" class="tight" aria-labelledby="d-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="sec-title" id="d-title"><span class="thin">THE NUMBERS</span><strong>THAT SHOW CHANGE</strong></h2>
+        <p class="sub">시각 자료 및 비교 정보 · 공식 통계로 본 중국 사회의 변화입니다.</p>
+      </div>
+      <div class="viz">
+        <!-- 도시화율 -->
+        <div class="viz-block" id="urbanBlock">
+          <div class="viz-text">
+            <h3>중국 내 도시화율 변화</h3>
+            <p class="caption">중국 전체 인구 · 2010년과 2020년 (세계은행·유엔 인구부 World Urbanization Prospects 기준)</p>
+            <div class="viz-ctrl">
+              <button class="yr-btn" data-yr="0" aria-pressed="false">2010</button>
+              <button class="yr-btn" data-yr="1" aria-pressed="true">2020</button>
+              <button class="play-btn" id="urbanPlay"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1v8l7-4z" fill="currentColor"/></svg>10년 변화 재생</button>
+            </div>
+            <div class="big"><strong id="urbanPct">63.89%</strong><span class="caption" id="urbanLbl">2020년 도시 인구 비중</span></div>
+            <dl class="stats">
+              <div><dt>10년 사이 변화</dt><dd class="up">+14.21%p</dd></div>
+              <div><dt>도시 인구 (2010→2020)</dt><dd class="up">+2억 3,642만 명</dd></div>
+              <div><dt>농촌 인구 (2010→2020)</dt><dd>−1억 6,436만 명</dd></div>
+              <div><dt>2020년 도시 인구</dt><dd>9억 199만 명</dd></div>
+            </dl>
+            <ul class="notes">
+              <li>한계: '도시'의 정의는 국가별·시기별로 다를 수 있으며, 세계은행 도시화 지표는 유엔 추계에 기반한다.</li>
+            </ul>
+            <p class="src">원문 출처: <a href="https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS?locations=CN" target="_blank" rel="noopener">data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS?locations=CN</a></p>
+          </div>
+          <div class="urban-stage" id="urbanStage" role="img" aria-label="중국 모양 틀을 도시 인구 비중만큼 아래에서부터 채운 그림. 2010년 49.68%, 2020년 63.89%">
+            <span class="u-zone" id="zoneRural">농촌</span><span class="u-zone" id="zoneUrban">도시</span>
+            <span class="u-tag old" id="tagOld">2010 · 49.68%</span><span class="u-tag now" id="tagNow">2020 · 63.89%</span>
+            <div class="tip" id="urbanTip"></div>
+          </div>
+        </div>
+        <!-- 민족 구성 -->
+        <div class="viz-block" id="ethnicBlock">
+          <div class="viz-text">
+            <h3>중국의 민족 구성</h3>
+            <p class="caption">중국 전체 인구 · 2020년 제7차 전국인구센서스 (국가통계국)</p>
+            <div class="big"><strong id="ethPct">91.11%</strong><span class="caption" id="ethLbl">한족 · 소수민족 8.89%</span></div>
+            <dl class="stats">
+              <div><dt>합계</dt><dd>14억 1,178만 명</dd></div>
+              <div><dt>사람 모양 1개</dt><dd>전체의 약 1% (약 1,412만 명)</dd></div>
+            </dl>
+            <ul class="notes">
+              <li>2010년 센서스와의 민족별 비교는 원문 추가 확인이 필요해 포함하지 않았다.</li>
+              <li>한계: 민족 분류는 자기 신고 기반이며, 지역별 언어 사용과 민족 정체성은 반드시 일치하지 않는다.</li>
+            </ul>
+            <p class="src">원문 출처: <a href="https://en.theorychina.org.cn/c/2021-12-01/1425922.shtml" target="_blank" rel="noopener">en.theorychina.org.cn/c/2021-12-01/1425922.shtml</a></p>
+          </div>
+          <div class="eth-stage">
+            <div class="people-grid intro" id="peopleGrid" role="img" aria-label="사람 모양 100개 중 한푸 차림 91개(한족), 장파오 차림 9개(소수민족)"></div>
+            <div class="legend">
+              <button data-grp="han" aria-pressed="false"><svg viewBox="0 0 60 120" aria-hidden="true"><use href="#ic-hanfu" class="ico"/></svg><p><b>한족 91.11%</b><span>12억 8,631만 명 · 한푸(漢服) 모양</span></p></button>
+              <button data-grp="min" class="min-t" aria-pressed="false"><svg viewBox="0 0 60 120" aria-hidden="true"><use href="#ic-chuba" class="ico min"/></svg><p><b>소수민족 8.89%</b><span>1억 2,547만 명 · 장파오(藏袍) 모양</span></p></button>
+            </div>
+            <div class="tip" id="ethTip"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sources" aria-labelledby="s-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="sec-title inline" id="s-title"><strong>SOURCES</strong> <span class="thin">BEHIND THE STORY</span></h2>
+        <p class="sub">출처 · 참고 자료 · 이 페이지의 내용은 아래 자료를 근거로 합니다.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>자료명</th><th>제공 기관</th><th>유형</th><th>관련 항목</th><th>발행·갱신</th><th>원문 URL</th></tr></thead>
+          <tbody id="srcBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap"><a href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="assets/img/logo.png" alt="histra"></a><span class="caption">HISTRA · 세계 역사·문화 학습 웹사이트</span></div>
+</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="닫기"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+    <div class="modal-media" id="modalMedia"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- 픽토그램 심볼: 한푸(漢服) / 장파오(藏袍) — 라인 + 옅은 채움 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 한푸: 상투(머리 묶음), 교령(엇갈린 깃), 넓게 늘어진 소매, 허리띠, 발끝까지 퍼지는 긴 포 -->
+    <symbol id="ic-hanfu" viewBox="0 0 60 120">
+      <circle cx="30" cy="6.5" r="3.6"/>
+      <circle cx="30" cy="18" r="8"/>
+      <path d="M22 29 Q30 26 38 29 L44 33 L55 62 Q56 70 46 70 L42 57 L49 113 L11 113 L18 57 L14 70 Q4 70 5 62 L16 33 Z"/>
+      <path d="M23.5 29 L34 46 M36.5 29 L29 41" fill="none"/>
+      <path d="M18 55 L42 55 L42 60 L18 60 Z"/>
+      <path d="M30 60 L30 113" fill="none" stroke-width="1"/>
+    </symbol>
+    <!-- 장파오: 챙 넓은 털모자, 한쪽 어깨를 드러낸 긴 포, 허리에 묶어 늘어뜨린 소매, 굵은 테두리 장식, 장화 -->
+    <symbol id="ic-chuba" viewBox="0 0 60 120">
+      <path d="M22.5 16 Q23 5 30 4 Q37 5 37.5 16 Z"/>
+      <rect x="18.5" y="13.5" width="23" height="6.5" rx="3.2"/>
+      <circle cx="30" cy="25" r="6.5"/>
+      <path d="M38 36 L46 55 L43.5 57 L36.5 43"/>
+      <path d="M21 34 Q29 31 37 34 L39 63 L46 109 L14 109 L21 63 L19.5 52 L16.5 88 L9 88 L13 46 Z"/>
+      <path d="M23 34 L39 63" fill="none" stroke-width="3.4"/>
+      <path d="M15 103 L45 103" fill="none" stroke-width="3.4"/>
+      <path d="M20.5 63 L39.5 63" fill="none" stroke-width="2.6"/>
+      <path d="M39 63 Q49 73 44 93" fill="none"/>
+      <path d="M19 109 L19 117 L28 117 L28 109 M32 109 L32 117 L41 117 L41 109"/>
+    </symbol>
+  </defs>
+</svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/culture3d.js"></script>
+<script src="assets/bianlian3d.js"></script>
+<script src="assets/map-data.js"></script>
+<script src="assets/era-data.js"></script>
+<script>
+document.documentElement.classList.add('js');
+
+/* ───── 데이터 (기획서 원문) ───── */
+const EVENTS=[
+  {img:'assets/img/event-qin.jpg',year:'221 BCE',era:'진(秦)',when:'기원전 221년',title:'진의 중국 통일',
+   desc:'전국시대의 치열한 열강 경쟁 속에서 법가적 개혁과 군사력으로 강대해진 진이 진시황의 주도로 육국을 정복했다. 진시황은 황제제·군현제를 도입하고 문자·화폐·도량형을 통일했다. 그 결과 최초의 중앙집권적 통일 제국이 성립했으나, 진은 기원전 207년에 붕괴했다.',
+   people:'진시황(秦始皇, Qin Shi Huang) · 리쓰(李斯)'},
+  {img:'assets/img/event-opium.jpg',year:'1839',era:'청(清)',when:'제1차 1839~1842년 · 제2차 1856~1860년',title:'아편전쟁',
+   desc:'청은 아편 수입으로 인한 은 유출과 사회 문제를 우려해 아편 금지를 추진했고, 영국은 무역 이권을 지키려 했다. 영국과의 전쟁에서 청이 패배해 난징조약 등 불평등조약을 체결했고, 이후 서구 열강과 일본의 개입이 확대되었다.',
+   people:'린쩌쉬(林則徐) · 다오광제(道光帝)'},
+  {img:'assets/img/event-xinhai.jpg',year:'1911',era:'청 → 중화민국',when:'1911~1912년',title:'신해혁명',
+   desc:'1911년 10월 10일 청나라 신군이 우창에서 봉기를 일으키자 혁명이 전국으로 번져 18개 성이 청으로부터 독립을 선포했다. 1912년 1월 1일 중화민국 수립이 선포되었고 2월 12일 선통제가 퇴위했다. 이로써 청의 268년 통치와 2천 년 넘게 이어진 군주제가 막을 내렸고, 아시아 최초의 공화국이 세워졌다.',
+   people:'쑨원 · 위안스카이'},
+  {img:'assets/img/event-prc.jpg',year:'1949',era:'중화인민공화국',when:'1949년 10월 1일',title:'중화인민공화국 수립',
+   desc:"국공내전이 끝나갈 무렵 베이징에서 중국인민정치협상회의가 열려 공동강령을 승인했고, 이튿날인 10월 1일 마오쩌둥이 톈안먼 성루에서 중화인민공화국 수립을 공식 선포했다. 베이징이 수도로 정해졌고, 공동강령은 '인민민주독재'를 내세워 중국을 농업국에서 공업국으로 전환하겠다고 밝혔다.",
+   people:'마오쩌둥 · 저우언라이'},
+  {img:'assets/img/event-reform.jpg',year:'1978',era:'개혁개방 이후',when:'1978년 12월',title:'개혁개방',
+   desc:'문화대혁명 이후 경제 침체가 커지자 중국공산당 제11기 3중전회에서 덩샤오핑 주도로 발전 우선 노선이 채택되었다. 농촌·기업 개혁과 외국인투자 유치, 선전 등 경제특구 설립으로 사회주의 시장경제로 이행했고, 세계은행은 연평균 9% 이상의 성장으로 약 8억 명이 극빈에서 벗어났다고 평가한다.',
+   people:'덩샤오핑'}
+];
+const PEOPLE=[
+  {img:'assets/img/person-confucius.jpg',name:'공자(孔子 / Confucius)',short:'공자',en:'Confucius',line:'인(仁)·예(禮)·효(孝)를 중심으로 한 유교 사상의 기초를 세움',range:'551 BCE~479 BCE',
+   period:'기원전 551~기원전 479년, 춘추시대 · 사상·교육',
+   role:'인(仁)·예(禮)·효(孝)를 중심으로 한 유교 사상의 기초를 세움. 제자 양성과 윤리·정치 질서의 이론화',
+   event:'한 무제 때 유교가 국가 이념으로 채택됨'},
+  {img:'assets/img/person-qinshihuang.jpg',name:'진시황(秦始皇 / Qin Shi Huang)',short:'진시황',en:'Qin Shi Huang',line:'중국 최초의 통일 제국 건설, 황제제·군현제 도입',range:'259 BCE~210 BCE',
+   period:'기원전 259~기원전 210년, 진나라 · 정치·군사',
+   role:'중국 최초의 통일 제국 건설, 황제제·군현제 도입, 문자·도량형 통일. 전국시대의 육국을 정복하고 중앙집권 국가를 설계함',
+   event:'진의 통일, 만리장성·도로 등 대규모 국가 사업',
+   impact:'통일 국가와 황제권의 원형을 만듦'},
+  {img:'assets/img/person-deng.jpg',name:'덩샤오핑(鄧小平 / Deng Xiaoping)',short:'덩샤오핑',en:'Deng Xiaoping',line:'1978년 개혁개방 노선을 주도하고 경제특구·시장화 개혁을 추진함',range:'1904~1997',
+   period:'1904~1997년, 중화인민공화국 · 정치·경제개혁',
+   role:'1978년 개혁개방 노선을 주도하고 경제특구·시장화 개혁을 추진함. 계획경제에서 사회주의 시장경제로의 전환을 이끎',
+   event:'개혁개방, 선전 경제특구 설립'},
+  {img:'assets/img/person-hanwudi.jpg',name:'한무제(漢武帝 / Emperor Wu of Han)',short:'한무제',en:'Emperor Wu of Han',line:'유교를 국가 이념으로 확립하고 제국 영역을 확장함',range:'156 BCE~87 BCE',
+   period:'기원전 156~기원전 87년, 전한(前漢) · 정치·군사·사상',
+   role:'유교를 국가 이념으로 확립하고 제국 영역을 확장함. 중앙집권 강화, 실크로드 개척, 흉노 대응',
+   event:'유교 국교화, 서역 진출'},
+  {img:'assets/img/person-luxun.jpg',name:'노신(魯迅 / Lu Xun)',short:'노신',en:'Lu Xun',line:'『광인일기』 『아Q정전』 등으로 근대 중국 문학의 기반을 세움',range:'1881~1936',
+   period:'1881~1936년, 근대 문학·비평·사상',
+   role:'『광인일기(狂人日記)』 『아Q정전(阿Q正傳)』 등으로 근대 중국 문학의 기반을 세움. 전통 사회의 폐해와 국민성 문제를 비판적 문학으로 다룸',
+   event:'신문화운동(新文化運動), 백화문(白話文) 확산'}
+];
+const ERAS=[
+  ['상·주','商·周','기원전 약 1600~기원전 221년','청동기 문명, 갑골문자, 성곽 도시, 점복과 예법, 춘추전국시대의 열강 경쟁','중국 문자·도시·정치 질서의 기원이 형성됨'],
+  ['진·한','秦·漢','기원전 221~기원후 220년','진시황의 통일, 군현제·문자·도량형 통일, 한의 유교 국교화와 관료제 정착, 실크로드 개척','이후 2천 년 제국 질서와 중앙집권 관료제의 기본형이 만들어짐'],
+  ['위진남북조','魏晉南北朝','220~589년','한 제국 붕괴 후 분열, 귀족 사회 강화, 불교 확산','정치적 분열 속에서 불교·민족 융합이 확대되고 수·당 재통일의 토대가 마련됨'],
+  ['수·당','隋·唐','581~907년','수의 재통일, 당의 국제적 번영, 과거제·불교·시가·실크로드 교류 발전','장안을 중심으로 한 세계적 문화·교역 네트워크가 형성됨'],
+  ['송','宋','960~1279년','문치주의, 과거제 확대, 목판인쇄·화약·나침반 등 기술 발전, 상업 도시 성장','관료제와 대중 교육·상업문화가 크게 발전함'],
+  ['원','元','1271~1368년','몽골 제국의 지배, 동서 교류 확대, 행중서성제 도입','유라시아 규모의 교류망과 다민족 통치 체제가 강화됨'],
+  ['명','明','1368~1644년','한족 왕조의 재건, 정화의 원양항해, 자금성·만리장성 정비, 해금 정책','중앙집권이 강화되었으나 후기 대외 교류가 위축됨'],
+  ['청','清','1644~1912년','만주족 지배, 영토 확장, 인구 급증, 19세기 아편전쟁·태평천국·청일전쟁으로 쇠퇴','근대 중국의 영토·민족 구성이 형성되었으나 서구·일본 제국주의의 압력에 흔들림'],
+  ['중화민국·군벌·항전','中華民國','1912~1949년','청 제국 붕괴, 공화정 수립, 군벌 분열, 국공내전, 일본 침략과 항일전쟁','근대 국민국가 형성과 공산혁명이 병행된 격변기'],
+  ['중화인민공화국','中華人民共和國','1949~1978년','1949년 건국, 토지개혁·집단화, 대약진, 문화대혁명','계획경제와 정치적 대중동원 체제가 강화되었으나 사회·경제적 혼란도 초래함'],
+  ['개혁개방 이후','改革開放','1978년~현재','1978년 개혁개방, 경제특구, 시장경제화, WTO 가입, 도시화·고령화 진전','중국이 저소득국에서 상위중소득국으로 전환하고 세계 경제의 핵심국이 됨']
+];
+const HERITAGE=[
+  {img:'assets/img/heritage-greatwall.jpg',name:'만리장성',type:'유적 · 건축물',loc:'중국 북부 여러 성·자치구에 분포',
+   feat:'전국시대부터 명대까지 단계적으로 축조·보수되었으며, 산능선을 따라 이어지는 성벽, 망루·교대·요새로 구성된 방어 체계이다. 주요 구간은 관광·보존 지역으로 활용된다.',
+   mean:'농경 제국과 북방 유목 세계의 경계, 국방과 통치 능력의 상징. 진시황의 연결 사업과 명대의 대규모 재축조가 관련됨'},
+  {img:'assets/img/heritage-mogao.jpg',name:'막고굴',type:'유적 · 종교미술',loc:'간쑤성 둔황(敦煌) 동남쪽',
+   feat:'서기 366년 창건되어 4~14세기에 걸쳐 조성되었으며, 현재 492개 굴, 약 4만 5,000㎡ 벽화, 2,000점 이상 채색 조각이 있다. 둔황연구원이 관리하며 디지털 아카이빙·제한적 관람이 이루어진다.',
+   mean:'불교 미술과 인도·중앙아시아·중국 문화의 융합을 보여 주는 대표 유산. 실크로드 교역·순례, 불교 전래와 관련됨'},
+  {img:'assets/img/heritage-forbidden.jpg',name:'자금성',type:'건축물',loc:'베이징(北京) 및 선양(瀋陽)',
+   feat:'베이징 자금성은 명대 15세기 초 창건되어 청대까지 사용되었다. 남북 중축선을 따라 정문·외조·내정·후원을 배치한 대칭적 궁궐 구조이며 황색 유리기와 목조 전각이 특징이다. 현재 고궁박물원(The Palace Museum)으로 운영된다.',
+   mean:'천자 중심의 우주관과 관료제 국가의 상징 공간. 명·청 황제의 통치 공간이었으며 1912년 제정이 종료됨'}
+];
+const CULTURE=[
+  {k:'언어와 문자',items:[
+    ['표준중국어(보통화)와 한자','공용어는 베이징 방언을 기초로 한 표준중국어·보통화이며, 한자는 표어문자 체계이다.'],
+    ['지역 언어','월어(광둥어), 우어(상하이어), 민어, 샹어, 간어, 하카어 등 방언·언어가 공존하며, 장족어·위구르어·몽골어 등은 일부 자치구에서 공용어로 사용된다.']]},
+  {k:'문학과 예술',items:[
+    ['고전 문학과 예술','당대 시가, 송대 사(詞)와 회화, 명·청 소설(『홍루몽』 등), 경극이 중국 문화 콘텐츠의 중요한 축을 이룬다. 당·송의 도시 문화와 과거제, 명·청의 상업 출판, 20세기 근대화 운동이 각각 새로운 문학·예술 형식을 낳았다.'],
+    ['노신','『광인일기』, 『아Q정전』 등으로 근대 중국 문학의 기반을 세운 작가로, 전통 사회의 폐해와 국민성 문제를 비판적으로 다루었다.']]},
+  {k:'종교',items:[
+    ['불교·도교·민간신앙·기독교·이슬람','중국에는 국교가 없으며, 정부는 불교·도교·이슬람·천주교·개신교를 공인 종교로 인정한다.'],
+    ['종교와 민간신앙','불교는 실크로드를 통해 확산되었고, 도교와 민간신앙은 지역 공동체·축제·건축에 깊이 스며들었다.']]},
+  {k:'생활문화',items:[
+    ['춘절(春節)','음력설은 가족 재회와 조상에 대한 예를 중심으로 한 중국 최대의 명절이다.'],
+    ['명절 음식','만두·떡·생선 등의 음식에는 번영·풍요·재회의 상징이 담겨 있다.']]}
+];
+const SOURCES=[
+  ['China - UNESCO World Heritage Convention','UNESCO World Heritage Centre','공식 기록','유적·문화유산, 세계유산 통계','2026년 기준','https://whc.unesco.org/en/statesparties/cn'],
+  ['Mogao Caves','UNESCO World Heritage Centre','공식 기록·박물관 자료','막고굴, 불교미술, 실크로드','2024년 갱신','https://whc.unesco.org/en/list/440/'],
+  ['Main Data of the Seventh National Population Census','중화인민공화국 국가통계국','공식 통계','인구·고령화·도시화·민족','2021년','https://www.stats.gov.cn/english/PressRelease/202105/t20210510_1817185.html'],
+  ['Main data of the 7th National Population Census','Theory China / 중국공산당 이론·당사 정보망','공식 통계 재게시','민족 구성','2021년','https://en.theorychina.org.cn/c/2021-12-01/1425922.shtml'],
+  ['Urban population (% of total population) - China','세계은행 / 유엔 인구부','통계','도시화','1960~2025년','https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS?locations=CN'],
+  ['GDP per capita (current US$) - China','세계은행','통계','경제 성장','1960~2025년','https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=CN'],
+  ['China - World Bank Group','세계은행','공식 분석·통계','개혁개방·경제 성장','2026년 9월 갱신','https://www.worldbank.org/ext/en/country/china'],
+  ['Keywords in Party History - Reform and Opening Up','중국공산당 이론·당사 정보망','공식 기록','개혁개방','2021년','https://en.theorychina.org.cn/c/2021-05-04/1393227.shtml'],
+  ['Timelines: China','Columbia University, Asia for Educators','대학 교육·연표 자료','역사 흐름·왕조·유교','상시 운영','http://afe.easia.columbia.edu/timelines/china_timeline.htm'],
+  ['China summary','Encyclopaedia Britannica','백과사전·학술성 참고 자료','왕조·근대사','2025년 갱신','https://www.britannica.com/summary/China'],
+  ['China Facts, Map, Population, GDP','The World Factbook','참고 자료·통계','언어·종교·인구','2025년판 기준','https://theworldfactbook.org/country/china.html'],
+  ['Historical Basemaps (시대별 영토 지도)','aourednik / GitHub','역사 지도 데이터','역사 흐름 영토 범위(대략적)','상시 갱신','https://github.com/aourednik/historical-basemaps'],
+  ['Face Changing in Chinese Sichuan Opera','Smithsonian Center for Folklife and Cultural Heritage','기록물 소개','변검·쓰촨극','2014년','https://si.edu/object/face-changing-chinese-sichuan-opera:yt_K1IVyo7Txus/1000'],
+  ['Peking Opera Facial Makeup (얼굴 색의 의미)','Visit Beijing (베이징시 문화관광국)','공식 관광 자료','변검 얼굴 색 의미','상시 운영','https://english.visitbeijing.com.cn/article/47ON5ETn27Z'],
+  ['Religion in China','위키백과','2차 정리 자료','종교','2026년 기준','https://en.wikipedia.org/wiki/Religion_in_China']
+];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ───── 지도 ───── */
+if(window.CHINA_MAP){
+  $('#mGrat').setAttribute('d',CHINA_MAP.grat);
+  $('#mOthers').setAttribute('d',CHINA_MAP.others);
+  $('#mChina').setAttribute('d',CHINA_MAP.china);
+  $('#mShape').setAttribute('d',CHINA_MAP.shape);
+}
+
+/* ───── 사건 카드 ───── */
+$('#moments').innerHTML=EVENTS.map((e,i)=>`
+  <button class="card reveal" data-ev="${i}" aria-haspopup="dialog">
+    <div class="card-media"><img src="${e.img}" alt="${esc(e.title)} 관련 이미지" loading="lazy"></div>
+    <div class="card-meta"><span class="card-year">${e.year}</span><span class="card-title">${esc(e.title)}</span><span class="card-sum">${esc(e.desc)}</span></div>
+  </button>`).join('');
+
+/* ───── 인물 카드 ───── */
+$('#people').innerHTML=PEOPLE.map((p,i)=>`
+  <button class="card reveal" data-pp="${i}" aria-haspopup="dialog">
+    <div class="person-media"><img src="${p.img}" alt="${esc(p.short)} 초상" loading="lazy"><span class="p-num">${String(i+1).padStart(2,'0')}</span><span class="p-range">${esc(p.range)}</span></div>
+    <div><p class="person-name">${esc(p.en)}</p><p class="person-line">${esc(p.short)} · ${esc(p.line)}</p></div>
+  </button>`).join('');
+
+/* ───── 유적·문화유산: 지그재그 ───── */
+$('#heritageList').innerHTML=HERITAGE.map((h,i)=>`
+  <article class="her-row ${i%2?'rev':''}">
+    <div class="her-img"><img src="${h.img}" alt="${h.name}" loading="lazy"></div>
+    <div class="her-text reveal">
+      <p class="her-num">${String(i+1).padStart(2,'0')} · ${h.type}</p>
+      <h3>${h.name}</h3>
+      <p class="her-meta">위치: ${h.loc}</p>
+      <div class="blk"><p class="lbl">특징</p><p>${h.feat}</p></div>
+      <div class="blk"><p class="lbl">역사적 의미</p><p>${h.mean}</p></div>
+    </div>
+  </article>`).join('');
+
+/* ───── 팝업 ───── */
+const modal=$('#modal');let lastFocus=null;
+function openModal(media,body){
+  $('#modalMedia').innerHTML=media;$('#modalBody').innerHTML=body;
+  lastFocus=document.activeElement;modal.classList.add('open');modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';$('#modalClose').focus();
+}
+function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';lastFocus&&lastFocus.focus();}
+$('#modalClose').onclick=closeModal;
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
+document.addEventListener('click',e=>{
+  const ev=e.target.closest('[data-ev]'),pp=e.target.closest('[data-pp]'),hr=e.target.closest('[data-hr]');
+  if(ev){const d=EVENTS[ev.dataset.ev];
+    openModal(`<img src="${d.img}" alt="${esc(d.title)} 관련 이미지">`,
+      `<p class="modal-tag">[${esc(d.era)}] ${esc(d.when)}</p><h3 id="modalTitle">${esc(d.title)}</h3><p>${esc(d.desc)}</p>
+       <div class="modal-foot"><span>관련 인물: ${esc(d.people)}</span></div>`);}
+  if(pp){const d=PEOPLE[pp.dataset.pp];
+    openModal(`<img src="${d.img}" alt="${esc(d.short)} 초상">`,
+      `<h3 id="modalTitle">${esc(d.name)}</h3>
+       <dl class="dl"><div><dt>활동 시기</dt><dd>${esc(d.period)}</dd></div>
+       <div><dt>대표 업적·역할</dt><dd>${esc(d.role)}</dd></div>
+       <div><dt>관련 사건</dt><dd>${esc(d.event)}</dd></div>
+       ${d.impact?`<div><dt>국가 역사에 미친 영향</dt><dd>${esc(d.impact)}</dd></div>`:''}</dl>
+       <div class="modal-foot"><span class="range">${esc(d.range)}</span></div>`);}
+  if(hr){const d=HERITAGE[hr.dataset.hr];
+    openModal(`<img src="${d.img}" alt="${d.name}">`,
+      `<p class="modal-tag">[${d.type}] ${d.loc}</p><h3 id="modalTitle">${d.name}</h3>
+       <dl class="dl"><div><dt>특징</dt><dd>${d.feat}</dd></div><div><dt>역사적 의미</dt><dd>${d.mean}</dd></div></dl>
+       <div class="modal-foot"><span>위치: ${d.loc}</span></div>`);}
+});
+
+/* ───── 역사 흐름: 시대별 영토 (historical-basemaps 데이터) ───── */
+const erasScroll=$('#erasScroll'),N=ERAS.length;let eraIdx=-1;
+erasScroll.style.height=`calc(${N} * 70vh + 100vh)`;
+if(window.ERA_MAP){
+  $('#eGrat').setAttribute('d',ERA_MAP.grat);$('#eLand').setAttribute('d',ERA_MAP.land);$('#eRef').setAttribute('d',ERA_MAP.ref);
+  $('#eEras').innerHTML=ERA_MAP.eras.map((e,i)=>`<g class="e-era" data-i="${i}"><path class="e-nb" d="${e.nb}"/>${e.main.map(d=>`<path class="e-main" d="${d}"/>`).join('')}</g>`).join('');
+}
+$('#eraStack').innerHTML=ERAS.map((e,i)=>`
+  <article class="era-card" data-i="${i}" aria-hidden="true">
+    <p class="han">${e[1]}</p><h3>${e[0]}</h3><p class="yr">${e[2]}</p>
+    <div class="blk"><p class="lbl">핵심 사건</p><p>${e[3]}</p></div>
+    <div class="blk"><p class="lbl">중요한 이유</p><p>${e[4]}</p></div>
+  </article>`).join('');
+$('#eraTicks').innerHTML=ERAS.map((e,i)=>`<li><button data-go="${i}" aria-label="${e[0]}"></button></li>`).join('');
+const eraGroups=[...document.querySelectorAll('.e-era')],eraCards=[...document.querySelectorAll('.era-card')],eraTicks=[...document.querySelectorAll('[data-go]')];
+function setEra(i){
+  if(i===eraIdx)return;eraIdx=i;
+  eraGroups.forEach((g,j)=>g.classList.toggle('on',j===i));
+  eraCards.forEach((c,j)=>{c.classList.toggle('on',j===i);c.setAttribute('aria-hidden',j!==i)});
+  eraTicks.forEach((t,j)=>{t.classList.toggle('on',j===i);t.classList.toggle('done',j<i)});
+  $('#eraNow').textContent=String(i+1).padStart(2,'0');
+}
+function eraRange(){const top=erasScroll.getBoundingClientRect().top+scrollY;return {top,len:erasScroll.offsetHeight-innerHeight};}
+function updateFlow(){
+  const {top,len}=eraRange();const p=Math.min(.9999,Math.max(0,(scrollY-top)/len));
+  setEra(Math.floor(p*N));
+}
+$('#eraTicks').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const {top,len}=eraRange();scrollTo({top:top+len*(+b.dataset.go+.5)/N,behavior:RM?'auto':'smooth'});});
+setEra(0);
+
+/* ───── 문화 (GNB형 탭) ───── */
+$('#cTabs').innerHTML=CULTURE.map((c,i)=>`<button class="ctab" role="tab" id="ct${i}" data-c="${i}" aria-selected="false">${c.k}</button>`).join('');
+function showCulture(i){
+  document.querySelectorAll('.ctab').forEach((t,j)=>{t.setAttribute('aria-selected',j===i);t.tabIndex=j===i?0:-1});
+  $('#cPanel').setAttribute('aria-labelledby','ct'+i);
+  $('#cPanel').innerHTML=CULTURE[i].items.map(it=>`<div class="c-item"><h3>${it[0]}</h3><p>${it[1]}</p></div>`).join('');
+  $('#c3dName').textContent=['죽간(竹簡) · 『논어』 첫 구절','붓과 벼루 · 문방사우','불탑(佛塔)','홍등(紅燈) · 춘절 장식'][i];
+  window.Culture3D&&window.Culture3D.show(i);
+}
+let cIdx=0;
+$('#cTabs').addEventListener('click',e=>{const t=e.target.closest('[data-c]');if(t)showCulture(cIdx=+t.dataset.c)});
+$('#cTabs').addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){cIdx=(cIdx+(e.key==='ArrowRight'?1:-1)+CULTURE.length)%CULTURE.length;showCulture(cIdx);$('#ct'+cIdx).focus();}});
+showCulture(0);
+
+/* ───── 도시화율: 큰 중국 모양 틀 + 연도 전환 + 재생 ───── */
+const SW=300,SH=260,URB=[49.68,63.89];
+let rowsArea=null,totArea=0;
+function prepArea(d){
+  const c=document.createElement('canvas');c.width=SW;c.height=SH;const x=c.getContext('2d');
+  x.fill(new Path2D(d));const px=x.getImageData(0,0,SW,SH).data;
+  rowsArea=new Array(SH).fill(0);for(let y=0;y<SH;y++)for(let i=0;i<SW;i++){const a=px[(y*SW+i)*4+3];rowsArea[y]+=a;totArea+=a;}
+}
+function levelY(pct){let acc=0;for(let y=SH-1;y>=0;y--){acc+=rowsArea[y];if(acc>=totArea*pct/100)return y+(acc-totArea*pct/100)/Math.max(1,rowsArea[y]);}return 0;}
+const urbanStage=$('#urbanStage');let urbYr=1,urbCur=URB[1],urbAnim=null;
+if(window.CHINA_MAP){
+  prepArea(CHINA_MAP.shape);
+  const y0=levelY(URB[0]),y1=levelY(URB[1]);
+  urbanStage.insertAdjacentHTML('afterbegin',`<svg viewBox="0 0 ${SW} ${SH}" aria-hidden="true">
+    <defs><clipPath id="ucp"><path d="${CHINA_MAP.shape}"/></clipPath></defs>
+    <path class="u-outline" vector-effect="non-scaling-stroke" d="${CHINA_MAP.shape}"/>
+    <g clip-path="url(#ucp)">
+      <rect class="u-fill" id="uFill" x="0" y="${y1}" width="${SW}" height="${SH}"/>
+      <rect class="u-gain" id="uGain" x="0" y="${y1}" width="${SW}" height="${y0-y1}"/>
+      <line class="u-water" vector-effect="non-scaling-stroke" id="uWater" x1="0" x2="${SW}" y1="${y1}" y2="${y1}"/>
+      <line class="u-ghost" vector-effect="non-scaling-stroke" id="uGhost" x1="0" x2="${SW}" y1="${y0}" y2="${y0}"/>
+    </g>
+    <path d="${CHINA_MAP.shape}" fill="none" stroke="var(--fg)" stroke-width="1.4" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+  </svg>`);
+  $('#tagOld').style.top=(y0/SH*100)+'%';
+}
+const fmt=v=>v.toFixed(2)+'%';
+function setUrban(pct){
+  urbCur=pct;const y=levelY(pct);
+  $('#uFill').setAttribute('y',y);$('#uWater').setAttribute('y1',y);$('#uWater').setAttribute('y2',y);
+  $('#tagNow').style.top=(y/SH*100)+'%';$('#zoneUrban').style.top=Math.min(92,(y/SH*100)+6)+'%';$('#zoneRural').style.top=Math.max(4,(y/SH*100)-10)+'%';
+  $('#urbanPct').textContent=fmt(pct);
+}
+function urbanYear(i,animate=true){
+  urbYr=i;document.querySelectorAll('.yr-btn').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.yr===i));
+  $('#urbanLbl').textContent=`${i?2020:2010}년 도시 인구 비중`;$('#tagNow').textContent=`${i?2020:2010} · ${fmt(URB[i])}`;
+  const show=i===1;$('#uGhost').classList.toggle('show',show);$('#uGain').classList.toggle('show',show);$('#tagOld').classList.toggle('show',show);
+  tweenUrban(URB[i],animate&&!RM?1200:0);
+}
+function tweenUrban(to,dur){
+  cancelAnimationFrame(urbAnim);const from=urbCur,t0=performance.now();
+  if(!dur){setUrban(to);return;}
+  (function step(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);setUrban(from+(to-from)*e);if(k<1)urbAnim=requestAnimationFrame(step);})(t0);
+}
+function playUrban(){urbanYear(0,false);setUrban(0);tweenUrban(URB[0],RM?0:900);setTimeout(()=>urbanYear(1),RM?0:1500);}
+if(window.CHINA_MAP){
+  urbanYear(1,false);
+  document.querySelectorAll('.yr-btn').forEach(b=>b.addEventListener('click',()=>urbanYear(+b.dataset.yr)));
+  $('#urbanPlay').addEventListener('click',playUrban);
+  // 마우스를 올리면 그 위치가 도시(물 아래)인지 농촌(물 위)인지 알려 줌
+  const tip=$('#urbanTip');
+  urbanStage.addEventListener('pointermove',e=>{
+    const r=urbanStage.getBoundingClientRect();const y=(e.clientY-r.top)/r.height*SH;const x=(e.clientX-r.left)/r.width*SW;
+    const inside=document.createElement('canvas').getContext('2d');inside.canvas.width=1;
+    const p=new Path2D(CHINA_MAP.shape);if(!inside.isPointInPath(p,x,y)){tip.classList.remove('show');return;}
+    const urban=y>=levelY(urbCur);const yr=urbYr?2020:2010;
+    tip.innerHTML=urban?`${yr}년 <b>도시</b> 인구 ${fmt(urbCur)}`:`${yr}년 농촌 인구 ${fmt(100-urbCur)}`;
+    tip.style.left=(e.clientX-r.left)+'px';tip.style.top=(e.clientY-r.top)+'px';tip.classList.add('show');
+  });
+  urbanStage.addEventListener('pointerleave',()=>tip.classList.remove('show'));
+}
+
+/* ───── 민족 구성: 사람 모양 100개 (한푸 91 · 장파오 9) ───── */
+const pg=$('#peopleGrid');
+pg.innerHTML=Array.from({length:100},(_,i)=>i<91
+  ?'<svg viewBox="0 0 60 120" data-grp="han"><use href="#ic-hanfu" class="ico"/></svg>'
+  :'<svg viewBox="0 0 60 120" data-grp="min"><use href="#ic-chuba" class="ico min"/></svg>').join('');
+const figs=[...pg.querySelectorAll('svg')];
+const GRP={han:{pct:'91.11%',lbl:'한족 · 12억 8,631만 명',tip:'한족 · 한푸(漢服) 모양'},min:{pct:'8.89%',lbl:'소수민족 · 1억 2,547만 명',tip:'소수민족 · 장파오(藏袍) 모양'}};
+let ethLock=null;
+function ethFocus(g){
+  figs.forEach(f=>{f.classList.toggle('dim',!!g&&f.dataset.grp!==g);f.classList.toggle('hit',!!g&&f.dataset.grp===g);});
+  document.querySelectorAll('.legend button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.grp===g));
+  if(g){$('#ethPct').textContent=GRP[g].pct;$('#ethLbl').textContent=GRP[g].lbl;$('#ethPct').style.color=g==='han'?'var(--fg)':'var(--accent)';}
+  else{$('#ethPct').textContent='91.11%';$('#ethLbl').textContent='한족 · 소수민족 8.89%';$('#ethPct').style.color='';}
+}
+document.querySelectorAll('.legend button').forEach(b=>{
+  b.addEventListener('mouseenter',()=>{if(!ethLock)ethFocus(b.dataset.grp)});
+  b.addEventListener('mouseleave',()=>{if(!ethLock)ethFocus(null)});
+  b.addEventListener('click',()=>{ethLock=ethLock===b.dataset.grp?null:b.dataset.grp;ethFocus(ethLock||null);});
+});
+const ethTip=$('#ethTip'),ethStage=pg.parentElement;
+pg.addEventListener('pointermove',e=>{const f=e.target.closest('svg[data-grp]');if(!f){ethTip.classList.remove('show');return;}
+  const r=ethStage.getBoundingClientRect(),fr=f.getBoundingClientRect();const n=figs.indexOf(f)+1;
+  ethTip.innerHTML=`${n}번째 사람 · <b>${GRP[f.dataset.grp].tip}</b><br>1개 = 약 1,412만 명`;
+  ethTip.style.left=(fr.left+fr.width/2-r.left)+'px';ethTip.style.top=(fr.top-r.top)+'px';ethTip.classList.add('show');
+  if(!ethLock)ethFocus(f.dataset.grp);});
+pg.addEventListener('pointerleave',()=>{ethTip.classList.remove('show');if(!ethLock)ethFocus(null);});
+function introPeople(){
+  if(!pg.classList.contains('intro'))return;
+  if(RM){pg.classList.remove('intro');return;}
+  figs.forEach((f,i)=>{f.style.transitionDelay=(i*12)+'ms';});
+  requestAnimationFrame(()=>pg.classList.remove('intro'));
+  setTimeout(()=>{figs.forEach(f=>f.style.transitionDelay='');ethFocus('min');setTimeout(()=>{if(!ethLock)ethFocus(null)},1600);},1400);
+}
+
+/* ───── 변검: 부채가 지나가며 얼굴이 바뀜 ───── */
+const FACES=[
+  {k:'붉은색',m:'충직·충성',base:'#b8261a',pat:'#141210',acc:'#f4f2ef'},
+  {k:'검은색',m:'공정·청렴',base:'#1a1614',pat:'#f4f2ef',acc:'#b8261a'},
+  {k:'파란색',m:'용맹·자부심',base:'#1f4f8f',pat:'#f4f2ef',acc:'#141210'},
+  {k:'금색',m:'신·선인',base:'#c9a24a',pat:'#141210',acc:'#b8261a'}
+];
+function faceSVG(f){
+  const O='M150 20 C236 20 272 86 270 166 C268 250 224 326 150 344 C76 326 32 250 30 166 C28 86 64 20 150 20 Z';
+  const L=(d,fill,extra='')=>`<path d="${d}" fill="${fill}" ${extra}/>`;
+  const mirror=d=>`<g transform="translate(300 0) scale(-1 1)">${d}</g>`;
+  const half=
+    // 위로 치솟는 눈썹
+    L('M144 146 C128 112 96 84 52 88 C64 96 70 104 72 114 C96 108 120 120 136 152 Z',f.pat)+
+    // 관자놀이로 올라간 눈두덩
+    L('M140 182 C124 156 92 136 50 138 C60 164 90 190 140 194 Z',f.acc)+
+    L('M124 178 C114 164 98 158 80 160 C90 174 106 182 124 184 Z',f.pat)+
+    // 뺨의 소용돌이
+    L('M128 206 C102 206 74 220 66 250 C82 234 104 228 124 232 Z',f.pat,'opacity=".9"')+
+    L('M70 262 C84 292 106 314 132 328',`none`,`stroke="${f.pat}" stroke-width="5" stroke-linecap="round"`);
+  return L(O,f.base,'stroke="#0b0908" stroke-width="3"')+
+    // 이마의 불꽃 문양
+    L('M150 26 C168 50 172 80 160 104 C156 112 152 120 150 130 C148 120 144 112 140 104 C128 80 132 50 150 26 Z',f.acc)+
+    L('M150 54 C158 68 158 84 152 96 L150 102 L148 96 C142 84 142 68 150 54 Z',f.pat)+
+    half+mirror(half)+
+    // 코
+    L('M144 150 L156 150 C158 178 164 200 170 214 C160 224 140 224 130 214 C136 200 142 178 144 150 Z',f.acc,'opacity=".92"')+
+    L('M136 214 C142 206 146 206 148 212 M152 212 C154 206 158 206 164 214','none',`stroke="${f.pat}" stroke-width="3.5" stroke-linecap="round"`)+
+    // 입 (아래로 처진 위엄 있는 입)
+    L('M104 258 C122 240 178 240 196 258 C184 280 116 280 104 258 Z',f.pat)+
+    L('M120 258 C134 250 166 250 180 258 C168 266 132 266 120 258 Z','#b8261a')+
+    L('M150 284 C146 302 148 318 150 330 C152 318 154 302 150 284 Z',f.pat);
+}
+let faceIdx=0,faceTimer=null;
+$('#faceKey').innerHTML=FACES.map((f,i)=>`<button data-face="${i}" aria-pressed="${i===0}" style="--c:${f.base==='#1a1614'?'#f4f2ef':f.base}"><b>${f.k}</b><span>${f.m}</span></button>`).join('');
+const bianStage=$('#bianStage');
+const bian3d=window.initBian3D?window.initBian3D(bianStage,FACES,faceSVG):null;
+if(!bian3d){ // WebGL을 못 쓰는 환경: 평면 그림으로 대체
+  bianStage.insertAdjacentHTML('afterbegin','<img class="fallback" id="bianFallback" alt="">');
+}
+function markFace(i){faceIdx=i;document.querySelectorAll('[data-face]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.face===i));
+  if(!bian3d)$('#bianFallback').src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 360">${faceSVG(FACES[i])}</svg>`);}
+function changeFace(i){
+  const next=i===undefined?(faceIdx+1)%FACES.length:i;if(next===faceIdx&&i!==undefined)return;
+  if(bian3d){if(bian3d.change(next))setTimeout(()=>markFace(next),RM?0:500);}else markFace(next);
+}
+markFace(0);
+bianStage.addEventListener('click',()=>{if(bianStage.dataset.dragged)return;changeFace();restartFaces();});
+bianStage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();changeFace();restartFaces();}});
+$('#faceKey').addEventListener('click',e=>{const b=e.target.closest('[data-face]');if(b){changeFace(+b.dataset.face);restartFaces();}});
+function restartFaces(){clearInterval(faceTimer);if(!RM)faceTimer=setInterval(()=>{if(bianVisible)changeFace();},3600);}
+let bianVisible=false;
+if('IntersectionObserver' in window)new IntersectionObserver(es=>{bianVisible=es[0].isIntersecting;},{threshold:.3}).observe($('#bianStage'));
+restartFaces();
+
+/* ───── 출처 ───── */
+$('#srcBody').innerHTML=SOURCES.map(s=>`<tr><td>${esc(s[0])}</td><td>${esc(s[1])}</td><td>${esc(s[2])}</td><td>${esc(s[3])}</td><td>${esc(s[4])}</td><td><a href="${s[5]}" target="_blank" rel="noopener">${esc(s[5])}</a></td></tr>`).join('');
+
+/* ───── 화면 진입 처리 ───── */
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){playUrban();io.disconnect();}},{threshold:.45});
+  io.observe($('#urbanStage'));
+  const io2=new IntersectionObserver(es=>{if(es[0].isIntersecting){introPeople();io2.disconnect();}},{threshold:.35});
+  io2.observe($('#peopleGrid'));
+}else introPeople();
+setTimeout(()=>{pg.classList.remove('intro')},10000);
+
+if('IntersectionObserver' in window && !RM){
+  const els=[...document.querySelectorAll('.reveal')];
+  els.forEach(el=>{if(el.getBoundingClientRect().top>innerHeight)el.classList.add('pending')});
+  const ro=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.remove('pending');ro.unobserve(x.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(el=>ro.observe(el));
+  setTimeout(()=>els.forEach(el=>el.classList.remove('pending')),6000);
+}
+
+/* ───── 스크롤시퀀스 (산수화 → 만리장성 → 오성홍기, 184프레임) ───── */
+const header=$('#header'),hero=$('#hero');
+const FRAMES=184,canvas=$('#seq'),ctx=canvas.getContext('2d');
+const imgs=new Array(FRAMES);let cur=-1;
+const src=i=>`assets/frames/f${String(i+1).padStart(3,'0')}.jpg`;
+function size(){const dpr=Math.min(devicePixelRatio||1,2);canvas.width=canvas.clientWidth*dpr;canvas.height=canvas.clientHeight*dpr;cur=-1;render();}
+function draw(i){
+  let img=imgs[i];
+  if(!img||!img.complete||!img.naturalWidth){for(let d=1;d<FRAMES;d++){const a=imgs[i-d];if(a&&a.complete&&a.naturalWidth){img=a;break}const b=imgs[i+d];if(b&&b.complete&&b.naturalWidth){img=b;break}}}
+  if(!img||!img.naturalWidth)return false;
+  const cw=canvas.width,ch=canvas.height,s=Math.max(cw/img.naturalWidth,ch/img.naturalHeight);
+  const w=img.naturalWidth*s,h=img.naturalHeight*s;
+  ctx.drawImage(img,(cw-w)/2,(ch-h)/2,w,h);return true;
+}
+function progress(){const r=hero.getBoundingClientRect();const total=hero.offsetHeight-innerHeight;return Math.min(1,Math.max(0,-r.top/total));}
+function render(){
+  const i=Math.round(progress()*(FRAMES-1));
+  if(i!==cur&&draw(i))cur=i;
+  header.classList.toggle('solid',hero.getBoundingClientRect().bottom<80);
+  updateFlow();
+}
+for(let i=0;i<FRAMES;i++){const im=new Image();im.decoding='async';im.onload=()=>{if(cur===-1||Math.abs(i-Math.round(progress()*(FRAMES-1)))<2){cur=-1;render();}};imgs[i]=im;}
+for(let i=0;i<FRAMES;i++)imgs[i].src=src(i);
+let ticking=false;
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(()=>{render();ticking=false})}},{passive:true});
+addEventListener('resize',size);
+size();
+</script>
+
+</body>
+</html>

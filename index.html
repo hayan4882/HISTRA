@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HISTRA · 세계의 역사와 땅을 탐험하다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body id="top">
+<header class="hd">
+  <a class="logo" href="index.html" aria-label="HISTRA 메인 홈"><img src="assets/main/logo.png" alt="histra"></a>
+  <nav aria-label="국가 선택">
+    <a href="uk/index.html">UK</a><a href="china/index.html">China</a><a href="korea/index.html">Korea</a><a href="italy/index.html">Italy</a><a href="egypt/index.html">Egypt</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-label="인터랙티브 지구본">
+    <div class="globe" id="globe"></div>
+    <p class="hint">빛나는 점을 눌러 국가를 선택하세요 · 콘텐츠를 제공하는 국가는 5개국입니다</p>
+    <a class="scroll" href="#select">Scroll<svg width="12" height="16" viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1"><path d="M1 2l5 5 5-5M1 8l5 5 5-5"/></svg></a>
+  </section>
+
+  <section class="sel" id="select" aria-label="국가 선택">
+    <div class="stage">
+      <ul class="rows" id="rows"></ul>
+      <figure class="card" id="card"><div class="ic" id="cardIc"></div><figcaption><b id="cardT"></b><span id="cardD"></span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="more" id="more" aria-labelledby="moreT">
+    <h2 id="moreT">History is more than dates</h2>
+    <ul class="cards">
+      <li><img src="assets/main/card-timeline.jpg" alt=""><div><span>01</span><h3>타임라인</h3><p>시대의 순서를 인터랙티브 타임라인으로 보여줍니다.</p></div></li>
+      <li><img src="assets/main/card-info.jpg" alt=""><div><span>02</span><h3>정보 카드</h3><p>사건·인물·유적을 카드로 나누어 핵심 내용을 먼저 제공합니다.</p></div></li>
+      <li><img src="assets/main/card-map.jpg" alt=""><div><span>03</span><h3>지도와 위치</h3><p>유적과 지역의 위치를 간단한 국가 지도로 보여줍니다.</p></div></li>
+      <li><img src="assets/main/card-graph.jpg" alt=""><div><span>04</span><h3>아이콘과 그래프</h3><p>국가를 대표하는 수치와 비교 정보를 정리합니다.</p></div></li>
+    </ul>
+  </section>
+
+  <section class="about" id="about" aria-labelledby="aboutT">
+    <h2 id="aboutT">서비스 소개</h2>
+    <div class="ab">
+      <div>
+        <h3>프로젝트 목적</h3>
+        <p>HISTRA는 정해진 5개 국가의 역사·문화 데이터를 학생이 이해하기 쉬운 시각적 콘텐츠로 재구성하는 웹사이트입니다. 지구본은 국가를 선택하는 시작점으로 사용하고, 국가 상세 페이지에서는 타임라인·지도·카드·아이콘·수치 정보 등을 활용해 긴 설명을 핵심 정보와 시각 자료로 나누어 보여줍니다.</p>
+        <p>HISTRA는 세계 전체의 국가를 모두 다루는 서비스가 아닙니다. 콘텐츠를 제공하는 국가는 영국·중국·한국·이탈리아·이집트 5개 국가입니다.</p>
+      </div>
+      <div>
+        <h3>콘텐츠 이용 방법</h3>
+        <ol>
+          <li>지구본의 빛나는 점이나 상단 메뉴, 국가 목록에서 국가를 선택합니다.</li>
+          <li>시대의 순서는 인터랙티브 타임라인으로 확인합니다.</li>
+          <li>사건·인물·유적은 정보 카드로 핵심 내용을 먼저 확인합니다.</li>
+          <li>자세한 설명은 카드를 선택하면 단계적으로 확인할 수 있습니다.</li>
+          <li>상단 로고를 누르면 언제든 메인 홈으로 돌아옵니다.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <a class="logo" href="index.html" aria-label="HISTRA 메인 홈"><img src="assets/main/logo.png" alt="histra"></a>
+  <nav aria-label="다른 국가로 이동"><a href="uk/index.html">UK</a><a href="china/index.html">China</a><a href="korea/index.html">Korea</a><a href="italy/index.html">Italy</a><a href="egypt/index.html">Egypt</a></nav>
+</footer>
+
+<script src="js/vendor/three.min.js"></script>
+<script src="js/globe-textures.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

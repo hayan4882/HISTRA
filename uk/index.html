@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HISTRA · 영국 United Kingdom</title>
+<meta name="description" content="해가 지지 않는 나라, 영국. HISTRA에서 영국의 역사와 문화를 시각 자료로 확인하세요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+
+<!-- ===== 헤더 : 로고(좌상단 고정, 클릭 시 메인 홈) ===== -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="../index.html" aria-label="HISTRA 메인 홈으로 이동">
+    <img src="assets/img/histra-logo.png" alt="histra">
+  </a>
+  <nav class="nav__links" aria-label="국가 선택">
+    <a href="index.html" aria-current="page">UK</a>
+    <a href="../china/index.html">China</a>
+    <a href="../korea/index.html">Korea</a>
+    <a href="../italy/index.html">Italy</a>
+    <a href="../egypt/index.html">Egypt</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ===== 1. 첫 화면 : 스크롤 시퀀스 / 나라별 핵심문장 / 나라이름 ===== -->
+<section class="hero" id="hero" aria-label="영국 소개">
+  <div class="hero__track">
+    <div class="hero__stage">
+      <canvas id="seq" aria-hidden="true"></canvas>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__fade" id="heroFade" aria-hidden="true"></div>
+      <div class="hero__copy">
+        <p class="t-caption">해가 지지 않는 나라, 영국</p>
+        <h1 class="t-h2 hero__title">WHERE TRADITION MET REVOLUTION</h1>
+        <p class="t-caption hero__country">UNITED KINGDOM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. 국가 개요 / 핵심 키워드 / 지도 ===== -->
+<section class="intro" id="overview" aria-labelledby="intro-title">
+  <div class="wrap intro__grid">
+    <div class="intro__text">
+      <p class="t-caption muted">국가 개요</p>
+      <h2 class="t-h1" id="intro-title">ONELAND<br>MANY<br>WORLDS,</h2>
+      <p class="t-body intro__lead">해가 지지 않는 나라, 영국</p>
+      <dl class="intro__facts">
+        <div><dt class="t-caption muted">국가</dt><dd class="t-body">영국 (United Kingdom)</dd></div>
+        <div><dt class="t-caption muted">다루는 시대</dt><dd class="t-body">43년~현재</dd></div>
+      </dl>
+      <hr class="rule">
+      <ul class="keywords" aria-label="핵심 키워드">
+        <li class="t-caption">식민지배</li>
+        <li class="t-caption">산업혁명</li>
+        <li class="t-caption">세계강국</li>
+      </ul>
+    </div>
+    <figure class="intro__map">
+      <img src="assets/img/uk-map.jpg" alt="고지도 위에 영국의 위치와 국가 모양을 함께 나타낸 이미지" width="1440" height="1200">
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 3. 주요 사건 (클릭 시 팝업) ===== -->
+<section class="moments" id="events" aria-labelledby="moments-title">
+  <div class="wrap">
+    <h2 class="t-h2 sec-title" id="moments-title"><span class="light">THE MOMENTS</span><br><span class="bold">THAT 영국</span></h2>
+
+    <ul class="moments__grid">
+      <li>
+        <button class="card" type="button" data-event="magna">
+          <span class="card__img"><img src="assets/img/magna-carta.jpg" alt="마그나 카르타 문서" loading="lazy"></span>
+          <span class="card__meta">
+            <span class="t-caption accent">1215년</span>
+            <span class="card__body">
+              <strong class="t-body card__title">마그나 카르타 체결</strong>
+              <span class="t-caption card__desc">잉글랜드의 존 왕은 귀족들의 반발에 직면해 마그나 카르타에 서명했다. 이 문서는 왕도 법의 적용을 받는다는 원칙을 담았으며, 이후 법치주의 발전의 상징이 되었다.</span>
+            </span>
+          </span>
+        </button>
+      </li>
+      <li>
+        <button class="card" type="button" data-event="industry">
+          <span class="card__img"><img src="assets/img/industrial-revolution.jpg" alt="방직 공장에서 일하는 사람들을 그린 삽화" loading="lazy"></span>
+          <span class="card__meta">
+            <span class="t-caption accent">18세기 후반~19세기</span>
+            <span class="card__body">
+              <strong class="t-body card__title">산업혁명</strong>
+              <span class="t-caption card__desc">영국에서 방직 기계와 증기기관 등이 널리 사용되면서 공장 중심의 생산 방식이 발전했다. 생산량과 도시 인구가 증가했고, 세계 경제와 노동 환경에도 큰 변화가 일어났다.</span>
+            </span>
+          </span>
+        </button>
+      </li>
+      <li>
+        <button class="card" type="button" data-event="empire">
+          <span class="card__img"><img src="assets/img/british-empire-1920s.jpg" alt="1920년대 대영제국의 영토를 붉은색으로 표시한 세계지도" loading="lazy"></span>
+          <span class="card__meta">
+            <span class="t-caption accent">17~20세기</span>
+            <span class="card__body">
+              <strong class="t-body card__title">대영제국의 팽창</strong>
+              <span class="t-caption card__desc">영국은 무역과 군사력을 바탕으로 아시아, 아프리카, 아메리카 등 여러 지역에 식민지를 확장했다. 식민지에서 자원과 노동력을 착취하는 과정에서 현지 사회에 큰 영향을 미쳤으며, 저항과 독립운동도 이어졌다.</span>
+            </span>
+          </span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 팝업 -->
+<dialog class="modal" id="modal" aria-labelledby="modal-title">
+  <button class="modal__close" type="button" aria-label="닫기" id="modal-close">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <div class="modal__img"><img id="modal-img" src="" alt=""></div>
+  <div class="modal__body">
+    <p class="t-caption accent" id="modal-period"></p>
+    <h3 class="t-h3" id="modal-title"></h3>
+    <p class="t-body modal__desc" id="modal-desc"></p>
+    <hr class="rule">
+    <p class="t-caption muted" id="modal-rel"></p>
+  </div>
+</dialog>
+
+<!-- ===== 4. 역사를 대표하는 인물 ===== -->
+<section class="people" id="people" aria-labelledby="people-title">
+  <div class="wrap">
+    <h2 class="t-h2 sec-title" id="people-title"><span class="bold">PEOPLE</span> <span class="light">WHO SHAPED HISTORY</span></h2>
+
+    <ul class="people__row">
+      <li class="person">
+        <div class="person__img">
+          <img src="assets/img/people-john.jpg" alt="존 왕 초상" loading="lazy">
+          <span class="person__years t-caption">1199~1216</span>
+        </div>
+        <h3 class="t-body person__name">존 왕</h3>
+        <p class="t-caption person__role">귀족들의 반발에 직면해 마그나 카르타에 서명한 잉글랜드의 왕</p>
+        <p class="t-caption muted">관련 사건: 마그나 카르타 체결</p>
+      </li>
+      <li class="person">
+        <div class="person__img">
+          <img src="assets/img/people-james-watt.jpg" alt="제임스 와트 초상" loading="lazy">
+          <span class="person__years t-caption">1736~1819</span>
+        </div>
+        <h3 class="t-body person__name">제임스 와트</h3>
+        <p class="t-caption person__role">증기기관을 개량해 산업혁명에 기여한 발명가</p>
+        <p class="t-caption muted">관련 사건: 산업혁명</p>
+      </li>
+      <li class="person">
+        <div class="person__img">
+          <img src="assets/img/people-queen-victoria.jpg" alt="빅토리아 여왕 초상" loading="lazy">
+          <span class="person__years t-caption">1837~1901</span>
+        </div>
+        <h3 class="t-body person__name">빅토리아 여왕</h3>
+        <p class="t-caption person__role">대영제국이 팽창하던 시기에 재위한 영국의 여왕</p>
+        <p class="t-caption muted">관련 사건: 대영제국의 팽창</p>
+      </li>
+      <li class="person">
+        <div class="person__img">
+          <img src="assets/img/people-shakespeare.jpg" alt="윌리엄 셰익스피어 초상" loading="lazy">
+          <span class="person__years t-caption">1564~1616</span>
+        </div>
+        <h3 class="t-body person__name">윌리엄 셰익스피어</h3>
+        <p class="t-caption person__role">『햄릿』, 『로미오와 줄리엣』 등을 쓴 극작가로, 세계 연극과 문학에 큰 영향을 미쳤다</p>
+      </li>
+      <li class="person">
+        <div class="person__img">
+          <img src="assets/img/people-dickens.jpg" alt="찰스 디킨스 초상" loading="lazy">
+          <span class="person__years t-caption">1812~1870</span>
+        </div>
+        <h3 class="t-body person__name">찰스 디킨스</h3>
+        <p class="t-caption person__role">사회와 인간관계를 다룬 작품을 남긴 영국의 작가</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- ===== 여기서부터 영국 페이지 자유 형식 영역 ===== -->
+<!-- ====================================================== -->
+
+<!-- 5. 역사 흐름 : 시대별 타임라인 -->
+<section class="flow" id="timeline" aria-labelledby="flow-title">
+  <div class="wrap">
+    <h2 class="t-h2 sec-title" id="flow-title"><span class="bold">역사 흐름</span> <span class="light">시대별 타임라인</span></h2>
+
+    <div class="tl" data-tl>
+      <div class="tl__rail" role="tablist" aria-label="시대 선택">
+        <button role="tab" class="tl__tab" id="tab-0" aria-controls="panel-0" aria-selected="true">
+          <span class="tl__dot" aria-hidden="true"></span>
+          <span class="t-caption tl__period">43년~1066년</span>
+          <span class="t-body tl__name">로마 지배와 초기 왕국</span>
+        </button>
+        <button role="tab" class="tl__tab" id="tab-1" aria-controls="panel-1" aria-selected="false" tabindex="-1">
+          <span class="tl__dot" aria-hidden="true"></span>
+          <span class="t-caption tl__period">1066년~1485년</span>
+          <span class="t-body tl__name">중세 시대</span>
+        </button>
+        <button role="tab" class="tl__tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">
+          <span class="tl__dot" aria-hidden="true"></span>
+          <span class="t-caption tl__period">1485년~1760년대</span>
+          <span class="t-body tl__name">근세와 대영제국의 성장</span>
+        </button>
+        <button role="tab" class="tl__tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">
+          <span class="tl__dot" aria-hidden="true"></span>
+          <span class="t-caption tl__period">1760년대~1914년</span>
+          <span class="t-body tl__name">산업혁명과 제국주의</span>
+        </button>
+        <button role="tab" class="tl__tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1">
+          <span class="tl__dot" aria-hidden="true"></span>
+          <span class="t-caption tl__period">1914년~현재</span>
+          <span class="t-body tl__name">현대 영국</span>
+        </button>
+      </div>
+
+      <div class="tl__panels">
+        <div class="tl__panel" role="tabpanel" id="panel-0" aria-labelledby="tab-0">
+          <p class="t-caption accent">핵심 사건</p>
+          <h3 class="t-h3">로마의 브리튼 정복, 잉글랜드 왕국의 형성</h3>
+          <p class="t-caption muted tl__why">중요한 이유</p>
+          <p class="t-body">로마 문화와 여러 게르만계 집단의 영향으로 이후 영국 사회의 기반이 형성됨.</p>
+        </div>
+        <div class="tl__panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" hidden>
+          <p class="t-caption accent">핵심 사건</p>
+          <h3 class="t-h3">노르만 정복(1066), 마그나 카르타(1215)</h3>
+          <p class="t-caption muted tl__why">중요한 이유</p>
+          <p class="t-body">왕권과 귀족의 관계가 변화하고, 법에 따른 통치 원칙이 발전함.</p>
+        </div>
+        <div class="tl__panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+          <p class="t-caption accent">핵심 사건</p>
+          <h3 class="t-h3">종교개혁, 1707년 잉글랜드·스코틀랜드 연합</h3>
+          <p class="t-caption muted tl__why">중요한 이유</p>
+          <p class="t-body">통치 체제가 변화하고 대브리튼 왕국이 탄생함.</p>
+        </div>
+        <div class="tl__panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
+          <p class="t-caption accent">핵심 사건</p>
+          <h3 class="t-h3">산업혁명, 식민지 확장</h3>
+          <p class="t-caption muted tl__why">중요한 이유</p>
+          <p class="t-body">공업과 무역이 성장하고 영국이 세계적인 산업·해양 강국으로 발전함.</p>
+        </div>
+        <div class="tl__panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" hidden>
+          <p class="t-caption accent">핵심 사건</p>
+          <h3 class="t-h3">제1·2차 세계대전, 제국의 해체</h3>
+          <p class="t-caption muted tl__why">중요한 이유</p>
+          <p class="t-body">세계대전을 거치며 국제적 영향력이 변화하고 현대 영국의 정치·사회가 형성됨.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 유적·문화유산 -->
+<section class="heritage" id="heritage" aria-labelledby="heritage-title">
+  <div class="wrap">
+    <h2 class="t-h2 sec-title" id="heritage-title"><span class="bold">유적·문화유산</span></h2>
+
+    <article class="site">
+      <img src="assets/img/stonehenge.jpg" alt="푸른 하늘 아래 초원에 원형으로 서 있는 스톤헨지의 돌기둥" loading="lazy">
+      <div class="site__text">
+        <h3 class="t-h3">스톤헨지</h3>
+        <p class="t-caption muted">위치: 잉글랜드 윌트셔주</p>
+        <ul class="t-body plain">
+          <li><b>특징</b> 거대한 돌기둥을 원형으로 배치한 선사시대 유적이다. 약 5,000년 전부터 조성되기 시작했다.</li>
+          <li><b>역사적 의미</b> 선사시대 사람들의 건축 기술과 종교·의례 문화를 보여주는 대표적인 유적이다.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="site site--rev">
+      <img src="assets/img/tower-of-london.jpg" alt="런던탑의 화이트 타워" loading="lazy">
+      <div class="site__text">
+        <h3 class="t-h3">런던탑</h3>
+        <p class="t-caption muted">위치: 잉글랜드 런던</p>
+        <ul class="t-body plain">
+          <li><b>특징</b> 11세기 노르만 정복 이후 건설된 요새이자 왕궁으로, 한때 감옥과 왕실 보물 보관 장소로 사용되었다.</li>
+          <li><b>역사적 의미</b> 노르만 정복과 영국 왕권의 성장, 왕실과 국가 기관의 역사를 보여준다.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="site">
+      <img src="assets/img/westminster.jpg" alt="템스강 너머로 보이는 웨스트민스터 궁전과 빅벤" loading="lazy">
+      <div class="site__text">
+        <h3 class="t-h3">웨스트민스터 궁전</h3>
+        <p class="t-caption muted">위치: 잉글랜드 런던</p>
+        <ul class="t-body plain">
+          <li><b>특징</b> 영국 의회가 자리한 건물로, 고딕 리바이벌 양식의 건축물이다. 유명한 빅벤 시계탑이 함께 자리하고 있다.</li>
+          <li><b>역사적 의미</b> 영국 의회정치의 중심지로, 입헌군주제와 의회 민주주의의 역사를 상징한다.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="site site--rev">
+      <img src="assets/img/ironbridge.jpg" alt="숲과 강 사이에 놓인 붉은 철제 아치교, 아이언브리지" loading="lazy">
+      <div class="site__text">
+        <h3 class="t-h3">아이언브리지 협곡</h3>
+        <p class="t-caption muted">위치: 잉글랜드 슈롭셔주</p>
+        <ul class="t-body plain">
+          <li><b>특징</b> 세계 최초의 철제 아치교 중 하나인 아이언브리지가 있는 지역이다. 산업혁명 당시 철 생산과 관련된 유적이 남아 있다.</li>
+          <li><b>역사적 의미</b> 철 생산 기술과 산업혁명의 발전 과정을 보여주는 중요한 산업유산이다.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 7. 문화 콘텐츠 -->
+<section class="culture" id="culture" aria-labelledby="culture-title">
+  <div class="wrap">
+    <h2 class="t-h2 sec-title" id="culture-title"><span class="bold">문화 콘텐츠</span></h2>
+    <div class="culture__grid">
+      <div class="culture__col">
+        <h3 class="t-h3">언어와 문자</h3>
+        <ul class="t-body plain">
+          <li><b>영어</b> 영국에서 주로 사용하는 언어이며, 세계 여러 나라에서 국제 공용어로 활용된다.</li>
+          <li><b>지역 언어</b> 웨일스어, 스코틀랜드 게일어, 아일랜드어 등도 영국의 지역과 공동체에서 사용된다.</li>
+        </ul>
+      </div>
+      <div class="culture__col">
+        <h3 class="t-h3">문학과 예술</h3>
+        <ul class="t-body plain">
+          <li><b>셰익스피어</b> 『햄릿』, 『로미오와 줄리엣』 등을 쓴 영국의 대표적인 극작가로, 세계 연극과 문학에 큰 영향을 미쳤다.</li>
+          <li><b>영국 문학</b> 제인 오스틴, 찰스 디킨스 등 여러 작가가 사회와 인간관계를 다룬 작품을 남겼다.</li>
+        </ul>
+      </div>
+      <div class="culture__col">
+        <h3 class="t-h3">종교</h3>
+        <ul class="t-body plain">
+          <li><b>성공회</b> 잉글랜드의 국교회로, 16세기 종교개혁 과정에서 로마 가톨릭교회와 분리되었다.</li>
+          <li><b>종교의 다양성</b> 현대 영국에는 기독교뿐 아니라 이슬람교, 힌두교 등 다양한 종교를 가진 사람들이 살고 있으며, 종교가 없다고 응답하는 사람들도 많다.</li>
+        </ul>
+      </div>
+      <div class="culture__col">
+        <h3 class="t-h3">생활문화</h3>
+        <ul class="t-body plain">
+          <li><b>애프터눈 티</b> 오후에 차와 함께 샌드위치, 스콘, 작은 디저트 등을 즐기는 식문화이다.</li>
+          <li><b>펍(Pub)</b> 음료와 음식을 즐기며 사람들과 대화하는 지역 공동체의 사교 공간으로, 영국의 일상문화에서 오랫동안 중요한 역할을 해왔다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 영국 왕실 (출처 위) : 버튼 → 인트로 영상 → 액자 갤러리 ===== -->
+<section class="reign" id="royal" aria-labelledby="crown-title">
+  <div class="reign__photos" aria-hidden="true">
+    <div class="reign__photo is-on" style="background-image:url(assets/img/royal-queen.jpg)"></div>
+    <div class="reign__photo" style="background-image:url(assets/img/royal-guards.jpg)"></div>
+  </div>
+  <div class="reign__shade" aria-hidden="true"></div>
+  <div class="reign__grain" aria-hidden="true"></div>
+
+  <div class="wrap reign__inner">
+    <div class="reign__copy">
+      <p class="reign__script t-h2">The Faces of</p>
+      <h2 class="reign__title t-h1" id="crown-title">British Monarchy</h2>
+      <p class="reign__lead t-body">존 왕부터 찰스 3세까지, 영국 역사를 이끈 왕과 여왕 6명의 초상화를 만나 보세요.</p>
+
+      <div class="reign__thumbs">
+        <button class="reign__thumb is-on" type="button" data-photo="0" aria-label="엘리자베스 2세 사진 보기"><img src="assets/img/royal-queen.jpg" alt=""></button>
+        <button class="reign__thumb" type="button" data-photo="1" aria-label="근위병 행진 사진 보기"><img src="assets/img/royal-guards.jpg" alt=""></button>
+        <div class="reign__pn t-caption">
+          <button type="button" id="reign-prev">PREV</button>
+          <button type="button" id="reign-next">NEXT</button>
+        </div>
+      </div>
+
+      <button class="reign__cta t-caption" type="button" id="royal-open" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l6 6 6-6M6 13l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span>영국 왕실 보기</span>
+      </button>
+    </div>
+  </div>
+
+  <ul class="reign__list" aria-label="왕실 인물 바로 보기">
+    <li><button type="button" data-royal="0" aria-label="존 왕 초상화 보기">King John</button></li>
+    <li><button type="button" data-royal="1" aria-label="헨리 8세 초상화 보기">Henry VIII</button></li>
+    <li><button type="button" data-royal="2" aria-label="엘리자베스 1세 초상화 보기">Elizabeth I</button></li>
+    <li><button type="button" data-royal="3" aria-label="빅토리아 여왕 초상화 보기">Queen Victoria</button></li>
+    <li><button type="button" data-royal="4" aria-label="엘리자베스 2세 초상화 보기">Elizabeth II</button></li>
+    <li class="is-active"><button type="button" data-royal="5" aria-label="찰스 3세 초상화 보기">Charles III</button></li>
+  </ul>
+  <p class="reign__word" aria-hidden="true">ROYAL</p>
+</section>
+
+<!-- 영국 주요 관광지 (출처 위) -->
+<section class="spots" id="spots" aria-labelledby="spots-title">
+  <div class="wrap">
+    <h2 class="t-h2 sec-title" id="spots-title"><span class="bold">영국 주요 관광지</span></h2>
+    <div class="spots__grid">
+      <ul class="spots__list" aria-label="관광지 목록">
+      <li><button type="button" class="spots__item is-on" data-img="assets/img/buckingham-palace.jpg" data-alt="꽃밭 너머로 보이는 버킹엄 궁전과 빅토리아 기념비" data-en="Buckingham Palace" data-ko="버킹엄 궁전" data-reg="잉글랜드 런던" data-desc="영국 군주의 공식 거처이자 집무 공간이다. 근위병 교대식으로 유명하다.">
+        <span class="spots__no t-caption">01</span>
+        <span class="spots__name"><b class="t-h3">버킹엄 궁전</b><i class="t-caption">Buckingham Palace</i></span>
+        <span class="spots__reg t-caption">잉글랜드 런던</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/royal-guards.jpg" data-alt="윈저성 성조지 예배당 앞을 행진하는 근위병" data-en="Windsor Castle" data-ko="윈저성" data-reg="잉글랜드 버크셔주" data-desc="사람이 실제로 사는 성 가운데 세계에서 가장 오래되고 큰 성으로 꼽힌다. 11세기 윌리엄 1세 때 짓기 시작했다.">
+        <span class="spots__no t-caption">02</span>
+        <span class="spots__name"><b class="t-h3">윈저성</b><i class="t-caption">Windsor Castle</i></span>
+        <span class="spots__reg t-caption">잉글랜드 버크셔주</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/tower-of-london.jpg" data-alt="런던탑의 화이트 타워" data-en="Tower of London" data-ko="런던탑" data-reg="잉글랜드 런던" data-desc="노르만 정복 이후 세운 요새이자 왕궁이다. 지금은 왕실 보물을 전시하고 있다.">
+        <span class="spots__no t-caption">03</span>
+        <span class="spots__name"><b class="t-h3">런던탑</b><i class="t-caption">Tower of London</i></span>
+        <span class="spots__reg t-caption">잉글랜드 런던</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/westminster.jpg" data-alt="템스강 너머로 보이는 웨스트민스터 궁전과 빅벤" data-en="Palace of Westminster" data-ko="웨스트민스터 궁전·빅벤" data-reg="잉글랜드 런던" data-desc="영국 의회가 열리는 고딕 리바이벌 양식의 건물이다. 시계탑 빅벤이 상징이다.">
+        <span class="spots__no t-caption">04</span>
+        <span class="spots__name"><b class="t-h3">웨스트민스터 궁전·빅벤</b><i class="t-caption">Palace of Westminster</i></span>
+        <span class="spots__reg t-caption">잉글랜드 런던</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/tower-bridge.jpg" data-alt="템스강 위에 놓인 타워 브리지" data-en="Tower Bridge" data-ko="타워 브리지" data-reg="잉글랜드 런던" data-desc="1894년에 완공된 템스강의 도개교이다. 배가 지나갈 때 다리가 위로 열린다.">
+        <span class="spots__no t-caption">05</span>
+        <span class="spots__name"><b class="t-h3">타워 브리지</b><i class="t-caption">Tower Bridge</i></span>
+        <span class="spots__reg t-caption">잉글랜드 런던</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/stonehenge.jpg" data-alt="초원에 원형으로 서 있는 스톤헨지" data-en="Stonehenge" data-ko="스톤헨지" data-reg="잉글랜드 윌트셔주" data-desc="약 5,000년 전부터 조성되기 시작한 선사시대 거석 유적이다.">
+        <span class="spots__no t-caption">06</span>
+        <span class="spots__name"><b class="t-h3">스톤헨지</b><i class="t-caption">Stonehenge</i></span>
+        <span class="spots__reg t-caption">잉글랜드 윌트셔주</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/british-museum.jpg" data-alt="기둥이 늘어선 대영박물관 정면과 영국 국기" data-en="British Museum" data-ko="대영박물관" data-reg="잉글랜드 런던" data-desc="1753년에 세워진 세계적인 박물관이다. 이집트의 로제타석이 대표 소장품이다.">
+        <span class="spots__no t-caption">07</span>
+        <span class="spots__name"><b class="t-h3">대영박물관</b><i class="t-caption">British Museum</i></span>
+        <span class="spots__reg t-caption">잉글랜드 런던</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/edinburgh-castle.jpg" data-alt="바위 언덕 위에 선 에든버러성" data-en="Edinburgh Castle" data-ko="에든버러성" data-reg="스코틀랜드 에든버러" data-desc="화산암 언덕 위에 솟은 성이다. 스코틀랜드 왕실의 보물이 보관되어 있다.">
+        <span class="spots__no t-caption">08</span>
+        <span class="spots__name"><b class="t-h3">에든버러성</b><i class="t-caption">Edinburgh Castle</i></span>
+        <span class="spots__reg t-caption">스코틀랜드 에든버러</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/bath.jpg" data-alt="반원 모양으로 늘어선 바스의 로열 크레센트" data-en="City of Bath" data-ko="바스" data-reg="잉글랜드 서머싯주" data-desc="로마 시대의 온천 욕장이 남아 있는 도시이다. 유네스코 세계유산으로 지정되어 있다.">
+        <span class="spots__no t-caption">09</span>
+        <span class="spots__name"><b class="t-h3">바스</b><i class="t-caption">City of Bath</i></span>
+        <span class="spots__reg t-caption">잉글랜드 서머싯주</span>
+      </button></li>
+      <li><button type="button" class="spots__item" data-img="assets/img/ironbridge.jpg" data-alt="숲과 강 사이에 놓인 붉은 철제 아치교" data-en="Ironbridge Gorge" data-ko="아이언브리지" data-reg="잉글랜드 슈롭셔주" data-desc="세계 최초의 철제 아치교 중 하나가 있는 곳이다. 산업혁명의 흔적이 남아 있다.">
+        <span class="spots__no t-caption">10</span>
+        <span class="spots__name"><b class="t-h3">아이언브리지</b><i class="t-caption">Ironbridge Gorge</i></span>
+        <span class="spots__reg t-caption">잉글랜드 슈롭셔주</span>
+      </button></li>
+      </ul>
+      <figure class="spots__panel" aria-live="polite">
+        <div class="spots__shot">
+          <img id="spots-img" src="" alt="" hidden>
+          <div class="spots__ph" id="spots-ph" aria-hidden="true"><span id="spots-ph-en"></span></div>
+        </div>
+        <figcaption>
+          <p class="t-caption accent" id="spots-reg"></p>
+          <h3 class="t-h3" id="spots-ko"></h3>
+          <p class="t-body muted" id="spots-desc"></p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 9. 출처·참고 자료 -->
+<section class="sources" id="sources" aria-labelledby="sources-title">
+  <div class="wrap">
+    <h2 class="t-h2 sec-title" id="sources-title"><span class="bold">출처 및 참고 자료</span></h2>
+    <ul class="sources__list">
+      <li><span class="t-body">영국 세계유산 목록</span><span class="t-caption muted">유네스코 세계유산센터</span></li>
+      <li><span class="t-body">스톤헨지의 역사와 의미</span><span class="t-caption muted">English Heritage</span></li>
+      <li><span class="t-body">런던탑의 역사와 가치</span><span class="t-caption muted">유네스코 세계유산센터</span></li>
+      <li><span class="t-body">언어와 문자 통계 (2021)</span><span class="t-caption muted">영국 통계청(ONS)</span></li>
+      <li><span class="t-body">종교 통계 (2021)</span><span class="t-caption muted">영국 통계청(ONS)</span></li>
+      <li><span class="t-body">영국 인구·경제 통계</span><span class="t-caption muted">세계은행</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10. 다른 국가로 이동 -->
+<section class="others" id="others" aria-labelledby="others-title">
+  <div class="wrap">
+    <h2 class="t-h3" id="others-title">다른 국가로 이동</h2>
+    <ul class="others__list">
+      <li><a class="t-body" href="../china/index.html">China</a></li>
+      <li><a class="t-body" href="../korea/index.html">Korea</a></li>
+      <li><a class="t-body" href="../italy/index.html">Italy</a></li>
+      <li><a class="t-body" href="../egypt/index.html">Egypt</a></li>
+    </ul>
+  </div>
+</section>
+<dialog class="royal" id="royal-dialog" aria-label="영국 왕실">
+  <img class="royal__bg is-on" id="royal-bg-0" src="assets/img/westminster.jpg" alt="">
+  <img class="royal__bg royal__bg--mall" id="royal-bg-1" src="assets/img/the-mall.jpg" alt="">
+  <div class="royal__shade" aria-hidden="true"></div>
+  <img class="royal__logo" src="assets/img/histra-logo.png" alt="histra">
+  <button class="royal__close t-caption" type="button" id="royal-close" aria-label="영국 왕실 화면 닫기">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+    닫기
+  </button>
+
+  <div class="royal__intro" id="royal-intro">
+    <video id="royal-video" playsinline preload="auto" disablepictureinpicture>
+      <source src="assets/video/royal-intro.mp4" type="video/mp4">
+    </video>
+    <button class="royal__skip t-caption" type="button" id="royal-skip">건너뛰기</button>
+  </div>
+
+  <div class="royal__stage">
+    <div class="royal__tabs" role="tablist" aria-label="왕실 갤러리 선택">
+      <button class="royal__tab t-caption" type="button" role="tab" aria-selected="true" aria-controls="royal-rail">역대 군주</button>
+      <button class="royal__tab t-caption" type="button" role="tab" aria-selected="false" aria-controls="royal-rail" tabindex="-1">왕실의 사람들</button>
+    </div>
+    <div class="royal__gallery">
+      <button class="royal__nav royal__nav--prev" type="button" id="royal-prev" aria-label="이전 초상화">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </button>
+      <ul class="royal__rail" id="royal-rail" aria-label="왕실 초상화 갤러리. 옆으로 스크롤하세요"></ul>
+      <button class="royal__nav royal__nav--next" type="button" id="royal-next" aria-label="다음 초상화">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </button>
+    </div>
+
+
+    <div class="royal__tree" id="royal-tree" role="tabpanel" aria-label="영국 왕실 가계도" hidden>
+      <div class="tree">
+        <ul>
+          <li>
+            <div class="tu"><div class="tp "><span class="tp__pic"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 46l-3-24 14 12 13-18 13 18 14-12-3 24z M10 52h44v4H10z" fill="currentColor"/></svg></span><b class="tp__name">조지 6세</b><span class="tp__yr">1895~1952</span></div></div>
+            <ul>
+              <li>
+                <div class="tu"><div class="tp "><span class="tp__pic"><img src="assets/img/royal-elizabeth-ii.jpg" alt="" draggable="false"></span><b class="tp__name">엘리자베스 2세</b><span class="tp__yr">1926~2022</span><em class="tp__badge t-caption">재위 70년</em></div><span class="tm" aria-hidden="true"><i></i><small>1947</small></span><div class="tp "><span class="tp__pic"><img src="assets/img/member-philip.jpg" alt="" draggable="false"></span><b class="tp__name">필립공</b><span class="tp__yr">1921~2021</span></div></div>
+                <ul>
+                  <li>
+                    <div class="tu"><div class="tp "><span class="tp__pic"><img src="assets/img/member-diana.jpg" alt="" draggable="false"></span><b class="tp__name">다이애나</b><span class="tp__yr">1961~1997</span></div><span class="tm" aria-hidden="true"><i></i><small>1981~96</small></span><div class="tp is-king"><span class="tp__pic"><img src="assets/img/royal-charles-iii.jpg" alt="" draggable="false"></span><b class="tp__name">찰스 3세</b><span class="tp__yr">1948년생</span><em class="tp__badge t-caption">현재 국왕</em></div><span class="tm" aria-hidden="true"><i></i><small>2005</small></span><div class="tp "><span class="tp__pic"><img src="assets/img/member-camilla.jpg" alt="" draggable="false"></span><b class="tp__name">커밀라 왕비</b><span class="tp__yr">1947년생</span></div></div>
+                    <ul>
+                      <li>
+                        <div class="tu"><div class="tp is-heir"><span class="tp__pic"><img src="assets/img/member-william.jpg" alt="" draggable="false"></span><b class="tp__name">윌리엄 왕세자</b><span class="tp__yr">1982년생</span><em class="tp__badge t-caption">계승 1순위</em></div><span class="tm" aria-hidden="true"><i></i><small>2011</small></span><div class="tp "><span class="tp__pic"><img src="assets/img/member-kate.jpg" alt="" draggable="false"></span><b class="tp__name">케이트 왕세자비</b><span class="tp__yr">1982년생</span></div></div>
+                        <ul>
+                          <li><div class="tu"><div class="tp "><span class="tp__pic"><img src="assets/img/member-george.jpg" alt="" draggable="false"></span><b class="tp__name">조지 왕자</b><span class="tp__yr">2013년생</span><em class="tp__badge t-caption">계승 2순위</em></div></div></li>
+                          <li><div class="tu"><div class="tp "><span class="tp__pic"><img src="assets/img/member-charlotte.jpg" alt="" draggable="false"></span><b class="tp__name">샬럿 공주</b><span class="tp__yr">2015년생</span><em class="tp__badge t-caption">계승 3순위</em></div></div></li>
+                          <li><div class="tu"><div class="tp "><span class="tp__pic"><img src="assets/img/member-louis.jpg" alt="" draggable="false"></span><b class="tp__name">루이 왕자</b><span class="tp__yr">2018년생</span><em class="tp__badge t-caption">계승 4순위</em></div></div></li>
+                        </ul>
+                      </li>
+                      <li><div class="tu"><div class="tp "><span class="tp__pic"><img src="assets/img/member-harry.jpg" alt="" draggable="false"></span><b class="tp__name">해리 왕자</b><span class="tp__yr">1984년생</span><em class="tp__badge t-caption">계승 5순위</em></div></div></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <p class="t-caption muted tree__note">현재 왕위 계승과 이어지는 주요 인물만 간추린 가계도입니다. 두 반지 표시 아래 숫자는 결혼한 해이며, 다이애나와 찰스 3세는 1996년에 이혼했습니다.</p>
+    </div>
+
+    <div class="royal__text" id="royal-text" aria-live="polite">
+      <p class="t-caption accent" id="royal-role"></p>
+      <h3 class="t-h1 royal__name" id="royal-name"></h3>
+      <p class="t-caption muted" id="royal-years"></p>
+      <p class="t-body royal__desc" id="royal-desc"></p>
+      <p class="t-caption muted royal__rel" id="royal-rel"></p>
+    </div>
+  </div>
+  <p class="t-caption muted royal__count" id="royal-count"></p>
+  <button class="royal__crest" type="button" id="royal-crest" aria-pressed="false" aria-controls="royal-tree" aria-label="왕실 가계도 보기">
+    <svg viewBox="0 0 64 80" width="30" height="38" aria-hidden="true">
+      <path d="M12 14l-3-9 8 5 7-8 7 8 7-8 7 8 8-5-3 9z" fill="currentColor"/>
+      <path d="M12 18h40v4H12z" fill="currentColor"/>
+      <path d="M14 26h36v22c0 14-9 22-18 28-9-6-18-14-18-28z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M32 28v46M16 44h32" stroke="currentColor" stroke-width="2" fill="none"/>
+      <circle cx="24" cy="36" r="2.4" fill="currentColor"/><circle cx="40" cy="36" r="2.4" fill="currentColor"/>
+      <path d="M21 56l3-4 3 4zM37 56l3-4 3 4z" fill="currentColor"/>
+    </svg>
+    <span class="royal__crest-tip t-caption">왕실 가계도</span>
+  </button>
+</dialog>
+
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>

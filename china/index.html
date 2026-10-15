@@ -6,7 +6,7 @@
 <title>HISTRA 중국</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <style>
 /* Layout: 공통 구간(스크롤시퀀스 → 키워드·지도 → 사건 카드 → 인물 카드)은 피그마 그대로, 그 아래는 중국 자유 구간(타임라인 · 유산 · 문화 · 데이터 · 출처) */
 :root{
@@ -21,7 +21,7 @@
   --fg-soft:rgba(244,242,239,.16);
   --paper-dark:#6b5236;
   /* 디자인가이드: 서체 Noto Sans KR 단일 */
-  --font:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --font:"Fraunces","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",serif;
   /* 디자인가이드 — Desktop */
   --fs-display:64px; --fs-h1:48px; --fs-h2:36px; --fs-h3:28px; --fs-body:16px; --fs-caption:14px;
   --gutter:clamp(20px,15.625vw,300px); /* 피그마 1920 기준 좌우 마진 300 */
@@ -48,15 +48,15 @@ p{margin:0}
 /* ── 헤더 (공통) ── */
 .site-header{position:fixed;inset:0 0 auto 0;z-index:50;padding:calc(env(safe-area-inset-top,0px) + 20px) var(--header-x) 20px;display:flex;align-items:center;gap:24px;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0));transition:background .3s}
 .site-header.solid{background:rgba(0,0,0,.86);backdrop-filter:blur(6px)}
-.logo{display:block;width:92px;flex:none}
-.logo img{width:100%;height:auto}
+.logo{display:block;flex:none}
+.logo img{height:32px;width:auto}
 .site-header nav{flex:1;min-width:0;display:flex;justify-content:center}
 .gnb{display:flex;gap:clamp(16px,5vw,72px);list-style:none;padding:0;margin:0}
 .gnb a{text-decoration:none;font-size:var(--fs-caption);font-weight:300;color:rgba(244,242,239,.75)}
 .gnb a:hover{color:var(--fg)}
 .gnb a[aria-current="page"]{font-weight:700;color:var(--fg)}
 .header-spacer{width:92px;flex:none}
-@media (max-width:600px){.header-spacer{display:none}.site-header nav{justify-content:flex-end}.gnb{gap:14px}.logo{width:72px}}
+@media (max-width:600px){.header-spacer{display:none}.site-header nav{justify-content:flex-end}.gnb{gap:14px}.logo img{height:24px}}
 
 /* ── 첫화면: 스크롤시퀀스 (공통) ── */
 .hero{position:relative;height:320vh}
@@ -341,7 +341,7 @@ footer img{width:72px;opacity:.7}
 <body>
 
 <header class="site-header" id="header">
-  <a class="logo" href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="assets/img/logo.png" alt="histra"></a>
+  <a class="logo" href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="../assets/main/logo.png" alt="histra"></a>
   <nav aria-label="국가 메뉴">
     <ul class="gnb">
       <li><a href="../uk/index.html">UK</a></li>
@@ -604,7 +604,7 @@ footer img{width:72px;opacity:.7}
 </main>
 
 <footer>
-  <div class="wrap"><a href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="assets/img/logo.png" alt="histra"></a><span class="caption">HISTRA · 세계 역사·문화 학습 웹사이트</span></div>
+  <div class="wrap"><a class="logo" href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="../assets/main/logo.png" alt="histra"></a><span class="caption">HISTRA · 세계 역사·문화 학습 웹사이트</span></div>
 </footer>
 
 <div class="modal" id="modal" aria-hidden="true">

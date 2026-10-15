@@ -19,3 +19,7 @@ docs/                 원본 README, 변경·테스트 기록
 
 ## 메인 페이지 구성 (Main_page.png 기준)
 상단 로고·5개국 메뉴 → 3D 지구본(빛나는 점 5개만 클릭 가능, 드래그 회전) → Scroll → 세로형 국가 선택(스크롤·호버로 강조, 카드 변경, 국가명 클릭 시 이동) → History is more than dates(4개 카드) → 서비스 소개(기획서의 프로젝트 목적·이용 방법).
+
+
+## 2차 수정 요약
+로고 통일(assets/main/logo.png), 글꼴 Fraunces(영문)+Noto Sans KR(한글), 메인 금색 카드 제거, History 카드 1·4 이미지 교체 및 호버 컬러 복원, 한국 지도 이미지 교체(3D 회전 제거). 자세한 내용은 docs/CHANGES_AND_TESTS.md.

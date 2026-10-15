@@ -1,0 +1,15 @@
+/* HISTRA 공통 웹폰트 — 영문: Fraunces / 한글: Noto Sans KR (자체 호스팅 가변 폰트) */
+@font-face{
+  font-family:"Fraunces";
+  src:url("../assets/fonts/Fraunces-Variable.woff2") format("woff2");
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Noto Sans KR";
+  src:url("../assets/fonts/NotoSansKR-Variable.woff2") format("woff2");
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap;
+}

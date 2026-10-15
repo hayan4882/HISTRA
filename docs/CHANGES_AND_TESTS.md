@@ -38,3 +38,9 @@
 - 글꼴: Fraunces 제거, 전 페이지 Noto Sans KR로 통일(디자인 가이드·네비게이션 시안 기준). Google Fonts 링크에서 Fraunces 삭제.
 - 테스트: 헤드리스 Chromium 1920px에서 6개 페이지 메뉴 위치 576·718·881·1044·1197px, 로고 (100, 12) 확인(시안 대비 ±2px). 390px 모바일 확인, 콘솔 오류·404 없음.
 - 유의: histra_log.png가 128×40으로 작아 고해상도(레티나) 화면에서는 약간 흐릴 수 있음. 더 큰 원본(예: 256×80 이상)이 있으면 같은 이름으로 교체하면 됨.
+
+# 4차 수정 (글꼴)
+- 글꼴: 영문 Fraunces, 한글 Noto Sans KR로 통일(3차의 Noto Sans KR 단일 설정을 대체). 제공받은 가변 폰트 TTF를 WOFF2로 변환해 `assets/fonts/`에 넣고 `css/fonts.css`(@font-face)로 6개 페이지 공통 로드 — Google Fonts 의존 제거(이집트 상형문자 폰트만 Google 유지).
+- 적용 범위: 각 페이지 font-family, 네비게이션 바(css/gnb.css), 이집트 SVG 글자, 중국 3D 캔버스 글자. font-optical-sizing:auto 적용.
+- 테스트: 헤드리스 Chromium에서 6개 페이지의 글자 요소마다 실제 렌더링 글꼴(CDP CSS.getPlatformFontsForNode)을 수집 — 전 페이지 Fraunces + Noto Sans KR로 표시. 예외: 한자 臉(중국), 상형문자, 아랍 숫자 ٢٠٢٦(이집트)는 두 글꼴에 없는 글자라 대체 글꼴 사용.
+- 유의: 제공된 Fraunces 파일에 이탤릭이 없어 이탤릭은 브라우저가 기울여 표시함. Noto Sans KR WOFF2는 약 3.9MB.

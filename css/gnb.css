@@ -1,6 +1,6 @@
 /* HISTRA 글로벌 네비게이션 바 — 6개 페이지 공통 (Global Navigation Bar.png 기준, 1920px)
-   높이 63px · 로고 x=100px, 높이 40px · 메뉴 시작 x=30%(576px), 간격 약 120px · Noto Sans KR 16px */
-.histra-gnb{position:fixed;top:0;left:0;right:0;z-index:50;box-sizing:border-box;height:calc(63px + env(safe-area-inset-top,0px));margin:0;padding:env(safe-area-inset-top,0px) 5.21vw 0;display:flex;align-items:center;background:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,0));transition:background-color .3s;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+   높이 63px · 로고 x=100px, 높이 40px · 메뉴 시작 x=30%(576px), 간격 약 120px · Fraunces(영문)·Noto Sans KR(한글) 16px */
+.histra-gnb{position:fixed;top:0;left:0;right:0;z-index:50;box-sizing:border-box;height:calc(63px + env(safe-area-inset-top,0px));margin:0;padding:env(safe-area-inset-top,0px) 5.21vw 0;display:flex;align-items:center;background:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,0));transition:background-color .3s;font-family:"Fraunces","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-optical-sizing:auto}
 .histra-gnb.histra-gnb--solid{background:#000}
 .histra-gnb__logo{display:block;flex:none;line-height:0;border:0}
 .histra-gnb__logo img{display:block;height:40px;width:auto;max-width:none}

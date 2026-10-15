@@ -21,7 +21,7 @@
   --fg-soft:rgba(244,242,239,.16);
   --paper-dark:#6b5236;
   /* 디자인가이드: 서체 Noto Sans KR 단일 */
-  --font:"Fraunces","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",serif;
+  --font:"Fraunces","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   /* 디자인가이드 — Desktop */
   --fs-display:64px; --fs-h1:48px; --fs-h2:36px; --fs-h3:28px; --fs-body:16px; --fs-caption:14px;
   --gutter:clamp(20px,15.625vw,300px); /* 피그마 1920 기준 좌우 마진 300 */
@@ -34,7 +34,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:var(--fs-body);line-height:1.7;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-optical-sizing:auto;font-size:var(--fs-body);line-height:1.7;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}

@@ -30,3 +30,11 @@
 - 글꼴: 영문 Fraunces, 한글 Noto Sans KR (font-family: "Fraunces","Noto Sans KR",…). 전 페이지 Google Fonts 링크 교체(Cormorant·Playfair 제거).
 - 테스트: 헤드리스 Chromium으로 6개 페이지 로드, 404 없음, 로고 높이 32px 확인. Google Fonts는 샌드박스 네트워크 제한으로 실제 글꼴 렌더링은 미확인(대체 글꼴로 표시됨).
 - 유의: 카드4 이미지에 글자가 포함돼 카드 문구와 겹침, 이집트·콜로세움 이미지는 해상도가 낮음, 이집트 숫자(#numEA)는 아랍 글꼴 유지.
+
+# 3차 수정
+- 글로벌 네비게이션 바: 페이지마다 달랐던 헤더 마크업·CSS를 지우고 공통 `css/gnb.css` + `js/gnb.js`(class `histra-gnb`)로 통일. Global Navigation Bar.png(1920px) 기준 높이 63px, 로고 x=100px·높이 40px, 메뉴 시작 x=30%(576px)·간격 120px(6.25vw), Noto Sans KR 16px 흰색. 현재 페이지는 굵게(700), 스크롤하면 검정 배경. 900px 이하에서는 메뉴가 오른쪽 정렬(14px, 간격 16px), 로고 28px(420px 이하 24px).
+- 이탈리아: 선택된 메뉴(Italy) 밑줄 제거 → 다른 페이지와 같은 굵은 글씨 표시.
+- 로고: 헤더·푸터의 모든 로고를 `assets/main/histra_log.png`(128×40)로 교체, 기존 assets/main/logo.png 삭제.
+- 글꼴: Fraunces 제거, 전 페이지 Noto Sans KR로 통일(디자인 가이드·네비게이션 시안 기준). Google Fonts 링크에서 Fraunces 삭제.
+- 테스트: 헤드리스 Chromium 1920px에서 6개 페이지 메뉴 위치 576·718·881·1044·1197px, 로고 (100, 12) 확인(시안 대비 ±2px). 390px 모바일 확인, 콘솔 오류·404 없음.
+- 유의: histra_log.png가 128×40으로 작아 고해상도(레티나) 화면에서는 약간 흐릴 수 있음. 더 큰 원본(예: 256×80 이상)이 있으면 같은 이름으로 교체하면 됨.

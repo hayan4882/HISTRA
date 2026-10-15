@@ -41,7 +41,7 @@
   const lin=c=>new T.Color(c).convertSRGBToLinear();
   function mat(c,o={}){const m=new T.MeshStandardMaterial(Object.assign({roughness:.7,metalness:0,envMapIntensity:.8},o));m.color=lin(c);if(o.emissive!==undefined)m.emissive=lin(o.emissive);return m;}
   const gold=()=>mat(0xc9a24a,{metalness:.85,roughness:.3});
-  const fontStack='\"Fraunces\",\"Noto Sans KR\",\"Apple SD Gothic Neo\",\"Malgun Gothic\",serif';
+  const fontStack='\"Noto Sans KR\",\"Apple SD Gothic Neo\",\"Malgun Gothic\",sans-serif';
   function canvasTex(w,h,draw){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new T.CanvasTexture(c);t.encoding=T.sRGBEncoding;t.anisotropy=8;return t;}
   const shadowed=o=>{o.traverse(m=>{if(m.isMesh){m.castShadow=true;m.receiveShadow=true;}});return o;};
   const rand=(a,b)=>a+Math.random()*(b-a);

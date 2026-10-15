@@ -43,14 +43,6 @@ a{color:inherit;text-decoration:none}
 .plain li{color:var(--muted)}
 
 /* ---------- NAV (로고: 항상 좌상단) ---------- */
-.nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px var(--pad);transition:background .3s}
-.nav.is-solid{background:rgba(0,0,0,.88);backdrop-filter:blur(8px)}
-.nav__logo img{height:32px;width:auto}
-.nav__links{position:absolute;left:30%;top:50%;transform:translateY(-50%);display:flex;gap:clamp(40px,5.5vw,96px)}
-.nav__links a{font-size:var(--fs-caption);line-height:1.6;font-weight:400;color:var(--text);opacity:.85;transition:opacity .2s}
-.nav__links a:hover{opacity:1}
-.nav__links a[aria-current]{font-weight:700;opacity:1}
-@media (max-width:900px){ .nav__links{position:static;transform:none;gap:16px} .nav__logo img{height:24px} }
 
 /* ---------- HERO : 스크롤 시퀀스 ---------- */
 .hero__track{height:400vh;position:relative}

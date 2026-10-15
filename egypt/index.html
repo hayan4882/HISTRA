@@ -6,7 +6,7 @@
 <title>HISTRA Egypt</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
 <style>
 /* Layout: 검정 배경 위 1320px 단일 컨테이너. 상단 고정 헤더 → 스크롤 시퀀스 히어로 → 개요+지도 → 사건 카드(엇갈림 2열) → 인물(엇갈림 5열) → 자유 영역 */
 :root{
@@ -22,9 +22,9 @@
   --paper:#e9e1d1;
   --map-sea:#7d6546; --map-land:#c9ae7f; --map-ink:#4a3620; --map-river:#24434c;
 
-  --font:"Fraunces","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",serif;           /* Body copy */
+  --font:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;           /* Body copy */
   --font-glyph:"Noto Sans Egyptian Hieroglyphs", "Segoe UI Historic", "Noto Sans KR", sans-serif;
-  --font-head:"Fraunces","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",serif;                   /* Headline (한글은 Noto Sans KR로 표시) */
+  --font-head:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;                   /* Headline (한글은 Noto Sans KR로 표시) */
 
   /* 부드러운 움직임 */
   --ease-out:cubic-bezier(.22, 1, .36, 1);
@@ -57,23 +57,8 @@ p{ margin:0; }
 .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
 /* ───────── 헤더 (로고 좌상단 고정 / 목차) ───────── */
-.site-header{ position:fixed; inset:0 0 auto 0; z-index:50; padding-top:env(safe-area-inset-top, 0px); transition:background-color var(--t-mid) var(--ease-soft), backdrop-filter var(--t-mid) var(--ease-soft); }
-.site-header.is-solid{ background:rgba(0,0,0,.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
-.header-inner{ position:relative; height:var(--header-h); display:flex; align-items:center; padding-inline:5%; }
 .logo{ display:block; color:var(--fg); line-height:0; }
 .logo img{ height:32px; width:auto; display:block; }
-.gnb{ position:absolute; left:30%; top:50%; transform:translateY(-50%); }
-.gnb ul{ display:flex; gap:clamp(40px, 8.3vw, 160px); list-style:none; margin:0; padding:0; }
-.gnb a{ text-decoration:none; font-size:var(--fs-body); font-weight:400; color:rgba(255,255,255,.88); white-space:nowrap; transition:color var(--t-fast) var(--ease-soft), opacity var(--t-fast) var(--ease-soft); }
-.gnb a:hover{ color:#fff; }
-.gnb a[aria-current="page"]{ font-weight:700; color:#fff; }
-@media (max-width: 900px){
-  .gnb{ position:static; transform:none; margin-left:auto; }
-  .gnb ul{ gap:16px; }
-  .gnb a{ font-size:var(--fs-cap); }
-  .logo img{ height:24px; }
-}
-@media (max-width: 420px){ .gnb ul{ gap:11px; } }
 
 /* ───────── 1. 첫 화면 : 벽화 스크롤 시퀀스 ───────── */
 .hero{ position:relative; height:420vh; }
@@ -605,22 +590,19 @@ input[type="range"]{ width:100%; margin-top:10px; accent-color:var(--accent); he
   .media img, .modal-card, .modal-backdrop{ transition:none; animation:none; }
 }
 </style>
+<link rel="stylesheet" href="../css/gnb.css">
 </head>
 <body>
 
-<header class="site-header" id="siteHeader">
-  <div class="header-inner">
-    <a class="logo" href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="../assets/main/logo.png" alt="histra"></a>
-    <nav class="gnb" aria-label="국가 목차">
-      <ul>
-        <li><a href="../uk/index.html">UK</a></li>
-        <li><a href="../china/index.html">China</a></li>
-        <li><a href="../korea/index.html">Korea</a></li>
-        <li><a href="../italy/index.html">Italy</a></li>
-        <li><a href="index.html" aria-current="page">Egypt</a></li>
-      </ul>
-    </nav>
-  </div>
+<header class="histra-gnb" id="siteHeader">
+  <a class="histra-gnb__logo" href="../index.html" aria-label="HISTRA 메인 홈"><img src="../assets/main/histra_log.png" alt="histra" width="128" height="40"></a>
+  <nav class="histra-gnb__menu" aria-label="국가 선택">
+    <a href="../uk/index.html">UK</a>
+    <a href="../china/index.html">China</a>
+    <a href="../korea/index.html">Korea</a>
+    <a href="../italy/index.html">Italy</a>
+    <a href="index.html" aria-current="page">Egypt</a>
+  </nav>
 </header>
 
 <main>
@@ -1031,7 +1013,7 @@ input[type="range"]{ width:100%; margin-top:10px; accent-color:var(--accent); he
 
 <footer class="site-footer">
   <div class="wrap">
-    <a class="logo" href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="../assets/main/logo.png" alt="histra"></a>
+    <a class="logo" href="../index.html" aria-label="HISTRA 메인 홈으로"><img src="../assets/main/histra_log.png" alt="histra"></a>
     <p>HISTRA · 영국 · 중국 · 한국 · 이탈리아 · 이집트의 역사와 문화를 한눈에</p>
   </div>
 </footer>
@@ -1364,7 +1346,7 @@ document.getElementById('cultureGrid').innerHTML = CULTURE.map(c => `
       const w = 16;
       shape += `<path d="M${cx - w} ${base} L${cx - w} ${top + 8} Q${cx - w} ${top} ${cx - w + 8} ${top} L${cx + w - 8} ${top} Q${cx + w} ${top} ${cx + w} ${top + 8} L${cx + w} ${base} Z" fill="#c9ae7f"/>`;
     }
-    const val = `<text class="val" x="${cx}" y="${top - 12}" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="600" font-family="Fraunces, Noto Sans KR, serif">${d.h.toFixed(1)}m</text>`;
+    const val = `<text class="val" x="${cx}" y="${top - 12}" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="600" font-family="Noto Sans KR, sans-serif">${d.h.toFixed(1)}m</text>`;
     const nowLbl = d.now ? `<text x="${cx}" y="${base - 16}" text-anchor="middle" fill="#000000" font-size="13" font-weight="700">현재 ${d.now}m</text>` : '';
     const ghost = shape.replace(/<path /g, '<path class="ghost-p" ').replace(/fill="[^"]*"/g, '').replace(/stroke="[^"]*"|stroke-width="[^"]*"|stroke-dasharray="[^"]*"/g, '');
     g += `<g class="bar" data-bar="${i}" tabindex="0" role="button" aria-label="${esc(d.name)} 높이 ${d.h}m 보기">
@@ -1893,7 +1875,7 @@ const $ = id => document.getElementById(id);
     <g class="layer" data-l="hook"><path d="M30 170 L100 186" stroke="#d8d2c4" stroke-width="4"/><path d="M100 186 q8 2 6 -8" fill="none" stroke="#d8d2c4" stroke-width="4"/><text x="24" y="150" fill="#d8d2c4" font-size="14" font-family="Noto Sans KR">갈고리</text></g>
     <g class="layer" data-l="cut"><path d="M300 214 L380 214" stroke="#ff8a3d" stroke-width="4" stroke-dasharray="6 5"/><text x="300" y="250" fill="#ff8a3d" font-size="13" font-family="Noto Sans KR" opacity="0">왼쪽 옆구리</text></g>
     <g class="layer" data-l="jars">${jar(260, '#e9dfc6')}${jar(320, '#6b4a2b')}${jar(380, '#2b1d12')}${jar(440, '#a5651f')}</g>
-    <g class="layer" data-l="natron">${crystals}<text x="560" y="120" fill="#f6f2ea" font-size="22" font-family="Fraunces, serif" font-style="italic">40 days</text></g>
+    <g class="layer" data-l="natron">${crystals}<text x="560" y="120" fill="#f6f2ea" font-size="22" font-family="Noto Sans KR, sans-serif" font-style="italic">40 days</text></g>
     <g class="layer" data-l="band"><circle cx="126" cy="196" r="30" fill="${linen}"/><path d="M150 168 Q180 156 230 160 L560 172 Q600 176 612 196 Q600 216 560 220 L230 230 Q180 234 150 222 Z" fill="${linen}"/>${bands}<path d="M336 182 q10 -12 20 0 q-10 14 -20 0 Z" fill="#2f9c8f"/></g>
     <g class="layer" data-l="mask"><path d="M98 172 Q100 150 126 150 Q152 150 154 172 L156 224 Q126 240 96 224 Z" fill="#e7b347" stroke="#7a5214" stroke-width="2"/><path d="M104 186 L148 186 M102 200 L150 200 M102 214 L150 214" stroke="#22407a" stroke-width="5"/><rect x="72" y="132" width="572" height="112" rx="56" fill="none" stroke="#e7b347" stroke-width="3" stroke-dasharray="10 8"/></g>
   </svg>`;
@@ -2262,5 +2244,6 @@ const $ = id => document.getElementById(id);
   els.forEach(el => io.observe(el));
 })();
 </script>
+<script src="../js/gnb.js"></script>
 </body>
 </html>
